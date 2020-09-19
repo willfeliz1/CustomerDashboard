@@ -44,6 +44,11 @@ import {
   CardActivitiesContainer,
   HeaderActivity,
   TextFieldActivity,
+  ActivityOptions,
+  TotalActivity,
+  OverdueActivity,
+  CompletedActivity,
+  ForeseenActivity,
 } from './styles';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -253,6 +258,25 @@ const Dashboard: React.FC = () => {
                   label="Pesquisar"
                   variant="outlined"
                 />
+
+                <ActivityOptions>
+                  <TotalActivity>
+                    <button type="button">4</button>
+                    <strong>Total</strong>
+                  </TotalActivity>
+                  <OverdueActivity>
+                    <button type="button">4</button>
+                    <strong>Em atraso</strong>
+                  </OverdueActivity>
+                  <CompletedActivity>
+                    <button type="button">4</button>
+                    <strong>Concluidas</strong>
+                  </CompletedActivity>
+                  <ForeseenActivity>
+                    <button type="button">4</button>
+                    <strong>Previstas</strong>
+                  </ForeseenActivity>
+                </ActivityOptions>
               </CardActivitiesContainer>
             </ActivityInfoContainer>
           </CardsContainer>

@@ -346,3 +346,49 @@ export const HeaderActivity = styled.div`
   padding-top: 15px;
   justify-content: center;
 `;
+
+export const ActivityOptions = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px 0 15px;
+`;
+
+export const TotalActivity = styled.div`
+  button {
+    width: 40px;
+    height: 40px;
+    border: 0;
+    border-radius: 5px;
+    margin-right: 10px;
+  }
+`;
+
+export const OverdueActivity = styled.div`
+  button {
+    width: 40px;
+    height: 40px;
+    border: 0;
+    border-radius: 5px;
+    margin-right: 10px;
+  }
+`;
+
+export const CompletedActivity = styled.div`
+  button {
+    width: 40px;
+    height: 40px;
+    border: 0;
+    border-radius: 5px;
+    margin-right: 10px;
+  }
+`;
+
+export const ForeseenActivity = styled.div`
+  button {
+    width: 40px;
+    height: 40px;
+    border: 0;
+    border-radius: 5px;
+    margin-right: 10px;
+  }
+`;
