@@ -42,6 +42,8 @@ import {
   FinancesToExpire,
   PaidFinances,
   CardActivitiesContainer,
+  HeaderActivity,
+  TextFieldActivity,
 } from './styles';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -243,8 +245,14 @@ const Dashboard: React.FC = () => {
             </ReportInfoContainer>
 
             <ActivityInfoContainer item sm={6} xs={12}>
-              <CardActivitiesContainer item xs={12}>
-                <h3>Próximas atividades</h3>
+              <CardActivitiesContainer>
+                <h3>Atividades</h3>
+
+                <TextFieldActivity
+                  id="outlined-basic"
+                  label="Pesquisar"
+                  variant="outlined"
+                />
               </CardActivitiesContainer>
             </ActivityInfoContainer>
           </CardsContainer>
