@@ -1,4 +1,4 @@
-import { Grid } from '@material-ui/core';
+import { Grid, TextField } from '@material-ui/core';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -323,9 +323,26 @@ export const PaidFinances = styled.div`
   }
 `;
 
-export const CardActivitiesContainer = styled(Grid)`
+export const CardActivitiesContainer = styled.section`
   display: flex;
   height: 100%;
   background: #808080;
   border-radius: 5px;
+  flex-direction: column;
+
+  h3 {
+    display: flex;
+    padding: 15px 0 15px 0;
+    justify-content: center;
+  }
+`;
+
+export const TextFieldActivity = styled(TextField)`
+  margin: 0 15px;
+`;
+
+export const HeaderActivity = styled.div`
+  display: flex;
+  padding-top: 15px;
+  justify-content: center;
 `;
