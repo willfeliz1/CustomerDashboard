@@ -1,14 +1,39 @@
-import { createStyles, Grid, makeStyles, Theme } from '@material-ui/core';
 import React from 'react';
-import { FiInfo, FiMail, FiPhone } from 'react-icons/fi';
+import 'react-vertical-timeline-component/style.min.css';
+import { Element } from 'react-scroll';
+
+import {
+  createStyles,
+  Grid,
+  makeStyles,
+  Paper,
+  Theme,
+  Typography,
+} from '@material-ui/core';
+
+import { FiAirplay, FiInfo, FiMail, FiPhone, FiRepeat } from 'react-icons/fi';
 import {
   WhatsApp,
   Facebook,
   Instagram,
   Twitter,
   LinkedIn,
+  Hotel,
+  Repeat,
+  LocalHotel,
+  Fastfood,
+  Work,
+  School,
+  Star,
 } from '@material-ui/icons';
+
 import { Link } from 'react-router-dom';
+
+import {
+  VerticalTimeline,
+  VerticalTimelineElement,
+} from 'react-vertical-timeline-component';
+
 import DrawerMenu from '../../components/DrawerMenu';
 
 import {
@@ -49,6 +74,7 @@ import {
   OverdueActivity,
   CompletedActivity,
   ForeseenActivity,
+  ActivityTimeline,
 } from './styles';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -68,6 +94,7 @@ const Dashboard: React.FC = () => {
   return (
     <Container>
       <DrawerMenu />
+
       <Main>
         <div className={classes.toolbar}>
           <CardsContainer container spacing={1}>
@@ -113,7 +140,6 @@ const Dashboard: React.FC = () => {
                     </EmployerSocialMedia>
                   </CardClient>
                 </Grid>
-
                 <Grid item sm={6} xs={12}>
                   <CardLocal>
                     <h3>Local</h3>
@@ -256,7 +282,7 @@ const Dashboard: React.FC = () => {
                 <TextFieldActivity
                   id="outlined-basic"
                   label="Pesquisar"
-                  variant="outlined"
+                  variant="filled"
                 />
 
                 <ActivityOptions>
@@ -277,6 +303,150 @@ const Dashboard: React.FC = () => {
                     <strong>Previstas</strong>
                   </ForeseenActivity>
                 </ActivityOptions>
+
+                <Element
+                  name="test2"
+                  className="element"
+                  id="scroll-container"
+                  style={{
+                    position: 'relative',
+                    height: '700px',
+                    overflow: 'scroll',
+                    marginBottom: '20px',
+                  }}
+                >
+                  <VerticalTimeline>
+                    <VerticalTimelineElement
+                      className="vertical-timeline-element--work"
+                      contentStyle={{
+                        background: 'rgb(33, 150, 243)',
+                        color: '#fff',
+                      }}
+                      contentArrowStyle={{
+                        borderRight: '7px solid  rgb(33, 150, 243)',
+                      }}
+                      date="2011 - present"
+                      iconStyle={{
+                        background: 'rgb(33, 150, 243)',
+                        color: '#fff',
+                      }}
+                      icon={<Work />}
+                    >
+                      <h3 className="vertical-timeline-element-title">
+                        Reunião de custos
+                      </h3>
+                      <h5 className="vertical-timeline-element-subtitle">
+                        Local: Sala de reunião
+                      </h5>
+                      <h5 className="vertical-timeline-element-subtitle">
+                        Responsavel: William Felizardo
+                      </h5>
+                    </VerticalTimelineElement>
+
+                    <VerticalTimelineElement
+                      className="vertical-timeline-element--work"
+                      contentStyle={{
+                        background: 'rgb(33, 150, 243)',
+                        color: '#fff',
+                      }}
+                      contentArrowStyle={{
+                        borderRight: '7px solid  rgb(33, 150, 243)',
+                      }}
+                      date="2011 - present"
+                      iconStyle={{
+                        background: 'rgb(33, 150, 243)',
+                        color: '#fff',
+                      }}
+                      icon={<Work />}
+                    >
+                      <h3 className="vertical-timeline-element-title">
+                        Reunião de custos
+                      </h3>
+                      <h5 className="vertical-timeline-element-subtitle">
+                        Local: Sala de reunião
+                      </h5>
+                      <h5 className="vertical-timeline-element-subtitle">
+                        Responsavel: William Felizardo
+                      </h5>
+                    </VerticalTimelineElement>
+                    <VerticalTimelineElement
+                      className="vertical-timeline-element--work"
+                      date="2008 - 2010"
+                      iconStyle={{
+                        background: 'rgb(33, 150, 243)',
+                        color: '#fff',
+                      }}
+                      icon={<Work />}
+                      contentStyle={{
+                        background: 'rgb(33, 150, 243)',
+                        color: '#fff',
+                      }}
+                    >
+                      <h3 className="vertical-timeline-element-title">
+                        Reunião de custos
+                      </h3>
+                      <h5 className="vertical-timeline-element-subtitle">
+                        Local: Sala de reunião
+                      </h5>
+                      <h5 className="vertical-timeline-element-subtitle">
+                        Responsavel: William Felizardo
+                      </h5>
+                    </VerticalTimelineElement>
+                    <VerticalTimelineElement
+                      className="vertical-timeline-element--work"
+                      date="2006 - 2008"
+                      iconStyle={{
+                        background: 'rgb(33, 150, 243)',
+                        color: '#fff',
+                      }}
+                      icon={<Work />}
+                      contentStyle={{
+                        background: 'rgb(33, 150, 243)',
+                        color: '#fff',
+                      }}
+                    >
+                      <h3 className="vertical-timeline-element-title">
+                        Reunião de custos
+                      </h3>
+                      <h5 className="vertical-timeline-element-subtitle">
+                        Local: Sala de reunião
+                      </h5>
+                      <h5 className="vertical-timeline-element-subtitle">
+                        Responsavel: William Felizardo
+                      </h5>
+                    </VerticalTimelineElement>
+                    <VerticalTimelineElement
+                      className="vertical-timeline-element--education"
+                      date="April 2013"
+                      iconStyle={{
+                        background: 'rgb(233, 30, 99)',
+                        color: '#fff',
+                      }}
+                      icon={<School />}
+                      contentStyle={{
+                        background: 'rgb(233, 30, 99)',
+                        color: '#fff',
+                      }}
+                    >
+                      <h3 className="vertical-timeline-element-title">
+                        Reunião de custos
+                      </h3>
+                      <h5 className="vertical-timeline-element-subtitle">
+                        Local: Sala de reunião
+                      </h5>
+                      <h5 className="vertical-timeline-element-subtitle">
+                        Responsavel: William Felizardo
+                      </h5>
+                    </VerticalTimelineElement>
+                    <VerticalTimelineElement
+                      iconStyle={{
+                        background: 'rgb(16, 204, 82)',
+                        color: '#fff',
+                      }}
+                      icon={<Star />}
+                    />
+                  </VerticalTimeline>
+                </Element>
               </CardActivitiesContainer>
             </ActivityInfoContainer>
           </CardsContainer>

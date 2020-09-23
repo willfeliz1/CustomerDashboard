@@ -1,4 +1,6 @@
 import { Grid, TextField } from '@material-ui/core';
+import { Timeline } from '@material-ui/lab';
+import { VerticalTimeline } from 'react-vertical-timeline-component';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -24,7 +26,7 @@ export const CardClient = styled.div`
   display: flex;
   flex-direction: column;
   min-width: 300;
-  height: 100%;
+  height: 300px;
   padding: 15px 20px;
   border-radius: 5px;
   background: #808080;
@@ -134,10 +136,7 @@ export const OpportunitiesContainer = styled.section`
   padding: 15px 20px;
   border-radius: 5px;
   background: #808080;
-`;
-
-export const MoreOpportunities = styled.div`
-  margin-top: 20px;
+  height: 100%;
 `;
 
 export const OpportunityHeader = styled.div`
@@ -210,6 +209,10 @@ export const DiscardOpportunity = styled.div`
   }
 `;
 
+export const MoreOpportunities = styled.div`
+  margin-top: 20px;
+`;
+
 export const CreditLimitContainer = styled.section`
   display: flex;
   min-width: 300px;
@@ -254,7 +257,7 @@ export const CreditAvailable = styled.div`
 export const SalesContainer = styled.section`
   display: flex;
   min-width: 300px;
-  height: 100%;
+  height: 300px;
   flex-direction: column;
   padding: 15px 20px;
   border-radius: 5px;
@@ -330,7 +333,7 @@ export const CardActivitiesContainer = styled.section`
   border-radius: 5px;
   flex-direction: column;
 
-  h3 {
+  > h3 {
     display: flex;
     padding: 15px 0 15px 0;
     justify-content: center;
@@ -392,3 +395,7 @@ export const ForeseenActivity = styled.div`
     margin-right: 10px;
   }
 `;
+
+export const DivTest = styled.div``;
+
+export const ActivityTimeline = styled(VerticalTimeline)``;
