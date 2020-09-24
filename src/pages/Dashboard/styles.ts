@@ -29,26 +29,12 @@ export const CardClient = styled.div`
   height: 300px;
   padding: 15px 20px;
   border-radius: 5px;
-  background: #808080;
   align-items: flex-start;
+  background: #808080;
 
   h3 {
-    padding-bottom: 20px;
-    align-self: center;
-  }
-`;
+    color: #fff;
 
-export const CardLocal = styled.div`
-  display: flex;
-  flex-direction: column;
-  min-width: 300;
-  height: 100%;
-  padding: 15px 20px;
-  border-radius: 5px;
-  background: #808080;
-  align-items: flex-start;
-
-  h3 {
     padding-bottom: 20px;
     align-self: center;
   }
@@ -131,6 +117,23 @@ export const EmployerSocialMedia = styled.div`
   }
 `;
 
+export const CardLocal = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-width: 300;
+  height: 100%;
+  padding: 15px 20px;
+  border-radius: 5px;
+  background: #808080;
+  align-items: flex-start;
+
+  h3 {
+    color: #fff;
+    padding-bottom: 20px;
+    align-self: center;
+  }
+`;
+
 export const OpportunitiesContainer = styled.section`
   min-width: 300;
   padding: 15px 20px;
@@ -142,7 +145,7 @@ export const OpportunitiesContainer = styled.section`
 export const OpportunityHeader = styled.div`
   display: flex;
   margin-bottom: 25px;
-
+  color: #fff;
   > div {
     display: flex;
     flex: 1;
@@ -165,6 +168,8 @@ export const ProfitOpportunity = styled.div`
     border: 0;
     border-radius: 5px;
     margin-right: 10px;
+    background-color: #008000;
+    color: #fff;
   }
 `;
 
@@ -177,6 +182,8 @@ export const LossOpportunity = styled.div`
     border: 0;
     border-radius: 5px;
     margin-right: 10px;
+    background-color: #ff0000;
+    color: #fff;
   }
 `;
 
@@ -194,6 +201,8 @@ export const OpenOpportunity = styled.div`
     border: 0;
     border-radius: 5px;
     margin-right: 10px;
+    background-color: #4169e1;
+    color: #fff;
   }
 `;
 
@@ -206,6 +215,8 @@ export const DiscardOpportunity = styled.div`
     border: 0;
     border-radius: 5px;
     margin-right: 10px;
+    background-color: #000;
+    color: #fff;
   }
 `;
 
@@ -224,6 +235,7 @@ export const CreditLimitContainer = styled.section`
   align-items: flex-start;
 
   h3 {
+    color: #fff;
     padding-bottom: 25px;
     align-self: center;
   }
@@ -240,6 +252,10 @@ export const CreditGranted = styled.div`
     border-radius: 5px;
     margin-right: 10px;
   }
+
+  strong {
+    color: #4169e1;
+  }
 `;
 
 export const CreditAvailable = styled.div`
@@ -251,6 +267,10 @@ export const CreditAvailable = styled.div`
     border: 0;
     border-radius: 5px;
     margin-right: 10px;
+  }
+
+  strong {
+    color: #008000;
   }
 `;
 
@@ -265,6 +285,7 @@ export const SalesContainer = styled.section`
   align-items: flex-start;
 
   h3 {
+    color: #fff;
     padding-bottom: 25px;
     align-self: center;
   }
@@ -283,6 +304,7 @@ export const FinancialSecurityContainer = styled.section`
   align-items: flex-start;
 
   h3 {
+    color: #fff;
     padding-bottom: 25px;
     align-self: center;
   }
@@ -334,6 +356,7 @@ export const CardActivitiesContainer = styled.section`
   flex-direction: column;
 
   > h3 {
+    color: #fff;
     display: flex;
     padding: 15px 0 15px 0;
     justify-content: center;
@@ -400,7 +423,8 @@ export const ForeseenActivity = styled.div`
     border: 0;
     border-radius: 5px;
     margin-right: 10px;
-    background-color: #ffa500;
+    background-color: #b8860b;
+    color: #fff;
   }
 `;
 

@@ -216,7 +216,7 @@ const Dashboard: React.FC = () => {
                     <CreditGranted>
                       <button type="button">1</button>
                       <div>
-                        <span>R$ 12.000,20</span>
+                        <strong>R$ 12.000,20</strong>
                         <p>Concedido</p>
                       </div>
                     </CreditGranted>
@@ -224,7 +224,7 @@ const Dashboard: React.FC = () => {
                     <CreditAvailable>
                       <button type="button">1</button>
                       <div>
-                        <span>R$ 12.000,20</span>
+                        <strong>R$ 12.000,20</strong>
                         <p>Disponivel</p>
                       </div>
                     </CreditAvailable>
