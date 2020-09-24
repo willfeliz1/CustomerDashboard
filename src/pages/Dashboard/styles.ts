@@ -354,6 +354,7 @@ export const ActivityOptions = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 10px 15px 0 15px;
+  margin-bottom: 5px;
 `;
 
 export const TotalActivity = styled.div`
@@ -363,6 +364,8 @@ export const TotalActivity = styled.div`
     border: 0;
     border-radius: 5px;
     margin-right: 10px;
+    background-color: #000;
+    color: #fff;
   }
 `;
 
@@ -373,16 +376,20 @@ export const OverdueActivity = styled.div`
     border: 0;
     border-radius: 5px;
     margin-right: 10px;
+    background-color: #ff0000;
+    color: #fff;
   }
 `;
 
-export const CompletedActivity = styled.div`
+export const InProcessActivity = styled.div`
   button {
     width: 40px;
     height: 40px;
     border: 0;
     border-radius: 5px;
     margin-right: 10px;
+    background-color: #4169e1;
+    color: #fff;
   }
 `;
 
@@ -393,6 +400,19 @@ export const ForeseenActivity = styled.div`
     border: 0;
     border-radius: 5px;
     margin-right: 10px;
+    background-color: #ffa500;
+  }
+`;
+
+export const CompletedActivity = styled.div`
+  button {
+    width: 40px;
+    height: 40px;
+    border: 0;
+    border-radius: 5px;
+    margin-right: 10px;
+    background-color: #008000;
+    color: #fff;
   }
 `;
 

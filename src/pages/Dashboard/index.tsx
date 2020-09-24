@@ -71,6 +71,7 @@ import {
   TextFieldActivity,
   ActivityOptions,
   TotalActivity,
+  InProcessActivity,
   OverdueActivity,
   CompletedActivity,
   ForeseenActivity,
@@ -283,25 +284,33 @@ const Dashboard: React.FC = () => {
                   id="outlined-basic"
                   label="Pesquisar"
                   variant="filled"
+                  style={{
+                    background: '#A9A9A9',
+                  }}
+                  color="primary"
                 />
 
                 <ActivityOptions>
                   <TotalActivity>
                     <button type="button">4</button>
-                    <strong>Total</strong>
+                    <span>Total</span>
                   </TotalActivity>
                   <OverdueActivity>
                     <button type="button">4</button>
-                    <strong>Em atraso</strong>
+                    <span>Atrasados</span>
                   </OverdueActivity>
-                  <CompletedActivity>
+                  <InProcessActivity>
                     <button type="button">4</button>
-                    <strong>Concluidas</strong>
-                  </CompletedActivity>
+                    <span>Andamento</span>
+                  </InProcessActivity>
                   <ForeseenActivity>
                     <button type="button">4</button>
-                    <strong>Previstas</strong>
+                    <span>Previstas</span>
                   </ForeseenActivity>
+                  <CompletedActivity>
+                    <button type="button">4</button>
+                    <span>Concluidas</span>
+                  </CompletedActivity>
                 </ActivityOptions>
 
                 <Element
