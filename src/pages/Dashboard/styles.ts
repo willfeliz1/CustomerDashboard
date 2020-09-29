@@ -375,6 +375,16 @@ export const ExpiredFinances = styled.div`
   }
 `;
 
+export const ExpiredFinancesButton = styled.button`
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 5px;
+  margin-right: 10px;
+  background-color: #ff0000;
+  color: #fff;
+`;
+
 export const FinancesToExpire = styled.div`
   display: flex;
   margin-bottom: 25px;
@@ -388,6 +398,16 @@ export const FinancesToExpire = styled.div`
   }
 `;
 
+export const FinancesToExpireButton = styled.button`
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 5px;
+  margin-right: 10px;
+  background-color: #b8860b;
+  color: #fff;
+`;
+
 export const PaidFinances = styled.div`
   display: flex;
 
@@ -398,6 +418,16 @@ export const PaidFinances = styled.div`
     border-radius: 5px;
     margin-right: 10px;
   }
+`;
+
+export const PaidFinancesButton = styled.button`
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 5px;
+  margin-right: 10px;
+  background-color: #008000;
+  color: #fff;
 `;
 
 export const CardActivitiesContainer = styled.section`
