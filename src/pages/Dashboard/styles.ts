@@ -26,17 +26,22 @@ export const CardClient = styled.div`
   display: flex;
   flex-direction: column;
   min-width: 300;
-  height: 300px;
+  height: 320px;
   padding: 15px 20px;
-  border-radius: 5px;
   align-items: flex-start;
-  background: #808080;
+  background: #fff;
+
+  box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+
+  :hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  }
 
   h3 {
-    color: #fff;
-
     padding-bottom: 20px;
     align-self: center;
+    font-size: 19px;
   }
 `;
 
@@ -46,25 +51,29 @@ export const EmployerName = styled.div`
   margin-top: 5px;
 
   img {
-    width: 56px;
-    height: 56px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
   }
 
   > div {
     display: flex;
     flex-direction: column;
-    margin: 5px 10px;
+    margin: 8px 10px;
+
+    strong {
+      font-size: 17px;
+    }
 
     p {
-      font-size: 13px;
+      font-size: 14px;
     }
   }
 `;
 
 export const EmployerPhone = styled.div`
   display: flex;
-  padding: 15px 35px;
+  padding: 25px 0px 17px;
   align-items: center;
 
   svg {
@@ -82,14 +91,14 @@ export const EmployerPhone = styled.div`
     }
 
     p {
-      font-size: 13px;
+      font-size: 14px;
     }
   }
 `;
 
 export const EmployerMail = styled.div`
   display: flex;
-  padding: 0px 0px 25px 35px;
+  padding: 0px 0px 20px 0px;
   align-items: center;
 
   svg {
@@ -103,7 +112,7 @@ export const EmployerMail = styled.div`
     padding: 0px 10px;
 
     p {
-      font-size: 13px;
+      font-size: 14px;
     }
   }
 `;
@@ -124,13 +133,20 @@ export const CardLocal = styled.div`
   height: 100%;
   padding: 15px 20px;
   border-radius: 5px;
-  background: #808080;
+  background: #fff;
   align-items: flex-start;
 
+  box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+
+  :hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  }
+
   h3 {
-    color: #fff;
     padding-bottom: 20px;
     align-self: center;
+    font-size: 19px;
   }
 `;
 
@@ -138,14 +154,21 @@ export const OpportunitiesContainer = styled.section`
   min-width: 300;
   padding: 15px 20px;
   border-radius: 5px;
-  background: #808080;
+  background: #fff;
   height: 100%;
+
+  box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+
+  :hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  }
 `;
 
 export const OpportunityHeader = styled.div`
   display: flex;
   margin-bottom: 25px;
-  color: #fff;
+
   > div {
     display: flex;
     flex: 1;
@@ -231,13 +254,20 @@ export const CreditLimitContainer = styled.section`
   flex-direction: column;
   padding: 15px 20px;
   border-radius: 5px;
-  background: #808080;
+  background: #fff;
   align-items: flex-start;
 
+  box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+
+  :hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  }
+
   h3 {
-    color: #fff;
     padding-bottom: 25px;
     align-self: center;
+    font-size: 19px;
   }
 `;
 
@@ -251,10 +281,14 @@ export const CreditGranted = styled.div`
     border: 0;
     border-radius: 5px;
     margin-right: 10px;
+    background-color: #4169e1;
   }
 
   strong {
-    color: #4169e1;
+  }
+
+  p {
+    color: #2d2d2d;
   }
 `;
 
@@ -267,10 +301,14 @@ export const CreditAvailable = styled.div`
     border: 0;
     border-radius: 5px;
     margin-right: 10px;
+    background-color: #008000;
   }
 
   strong {
-    color: #008000;
+  }
+
+  p {
+    color: #2d2d2d;
   }
 `;
 
@@ -281,13 +319,20 @@ export const SalesContainer = styled.section`
   flex-direction: column;
   padding: 15px 20px;
   border-radius: 5px;
-  background: #808080;
+  background: #fff;
   align-items: flex-start;
 
+  box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+
+  :hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  }
+
   h3 {
-    color: #fff;
     padding-bottom: 25px;
     align-self: center;
+    font-size: 19px;
   }
 `;
 
@@ -300,13 +345,20 @@ export const FinancialSecurityContainer = styled.section`
   flex-direction: column;
   padding: 15px 20px;
   border-radius: 5px;
-  background: #808080;
+  background: #fff;
   align-items: flex-start;
 
+  box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+
+  :hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  }
+
   h3 {
-    color: #fff;
     padding-bottom: 25px;
     align-self: center;
+    font-size: 19px;
   }
 `;
 
@@ -351,15 +403,22 @@ export const PaidFinances = styled.div`
 export const CardActivitiesContainer = styled.section`
   display: flex;
   height: 100%;
-  background: #808080;
   border-radius: 5px;
   flex-direction: column;
+  background-color: #fff;
+
+  box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+
+  :hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  }
 
   > h3 {
-    color: #fff;
     display: flex;
     padding: 15px 0 15px 0;
     justify-content: center;
+    font-size: 19px;
   }
 `;
 
