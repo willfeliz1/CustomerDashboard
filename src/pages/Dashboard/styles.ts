@@ -531,4 +531,8 @@ export const CompletedActivity = styled.div`
 
 export const DivTest = styled.div``;
 
-export const ActivityTimeline = styled(VerticalTimeline)``;
+export const ActivityVerticalTimeline = styled(VerticalTimeline)`
+  ::before {
+    background: #ebeceb;
+  }
+`;
