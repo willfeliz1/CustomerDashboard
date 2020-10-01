@@ -2,37 +2,24 @@ import React from 'react';
 import 'react-vertical-timeline-component/style.min.css';
 import { Element } from 'react-scroll';
 
-import {
-  createStyles,
-  Grid,
-  makeStyles,
-  Paper,
-  Theme,
-  Typography,
-} from '@material-ui/core';
+import { createStyles, Grid, makeStyles, Theme } from '@material-ui/core';
 
-import { FiAirplay, FiInfo, FiMail, FiPhone, FiRepeat } from 'react-icons/fi';
+import { FiInfo, FiMail, FiPhone } from 'react-icons/fi';
 import {
   WhatsApp,
   Facebook,
   Instagram,
   Twitter,
   LinkedIn,
-  Hotel,
-  Repeat,
-  LocalHotel,
-  Fastfood,
   Work,
   School,
   Star,
+  Room,
 } from '@material-ui/icons';
 
 import { Link } from 'react-router-dom';
 
-import {
-  VerticalTimeline,
-  VerticalTimelineElement,
-} from 'react-vertical-timeline-component';
+import { VerticalTimelineElement } from 'react-vertical-timeline-component';
 
 import DrawerMenu from '../../components/DrawerMenu';
 
@@ -48,6 +35,7 @@ import {
   EmployerMail,
   EmployerSocialMedia,
   CardLocal,
+  AdressDescription,
   OpportunitiesContainer,
   OpportunityHeader,
   ProfitLossOpportunity,
@@ -64,8 +52,11 @@ import {
   SalesGraphic,
   FinancialSecurityContainer,
   ExpiredFinances,
+  ExpiredFinancesButton,
   FinancesToExpire,
+  FinancesToExpireButton,
   PaidFinances,
+  PaidFinancesButton,
   CardActivitiesContainer,
   HeaderActivity,
   TextFieldActivity,
@@ -75,8 +66,10 @@ import {
   OverdueActivity,
   CompletedActivity,
   ForeseenActivity,
-  ActivityTimeline,
+  ActivityVerticalTimeline,
 } from './styles';
+
+import LeafletMap from '../../components/LeafletMap';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -119,7 +112,7 @@ const Dashboard: React.FC = () => {
                     <EmployerPhone>
                       <FiPhone />
                       <div>
-                        <span>44 9 97548484</span>
+                        <strong>44 9 97548484</strong>
                         <p>Celular</p>
                       </div>
                     </EmployerPhone>
@@ -127,7 +120,7 @@ const Dashboard: React.FC = () => {
                     <EmployerMail>
                       <FiMail />
                       <div>
-                        <span>WilliamFelizardo@mail.com</span>
+                        <strong>WilliamFelizardo@mail.com</strong>
                         <p>Trabalho</p>
                       </div>
                     </EmployerMail>
@@ -145,16 +138,11 @@ const Dashboard: React.FC = () => {
                   <CardLocal>
                     <h3>Local</h3>
 
-                    <EmployerName>
-                      <img
-                        src="https://avatars2.githubusercontent.com/u/50719156?s=460&u=81ec30b299ffe9d9275b4e207d9c4760fcada87a&v=4"
-                        alt="imagemGitHub"
-                      />
-                    </EmployerName>
-
-                    <EmployerPhone>
-                      <span>api googlemaps</span>
-                    </EmployerPhone>
+                    <LeafletMap />
+                    <AdressDescription>
+                      <Room />
+                      <strong>Avenida Paraná, 12345</strong>
+                    </AdressDescription>
                   </CardLocal>
                 </Grid>
               </Grid>
@@ -214,18 +202,18 @@ const Dashboard: React.FC = () => {
                   <CreditLimitContainer>
                     <h3>Limite de crédito</h3>
                     <CreditGranted>
-                      <button type="button">1</button>
+                      <button type="button" />
                       <div>
-                        <strong>R$ 12.000,20</strong>
-                        <p>Concedido</p>
+                        <strong>Concedido</strong>
+                        <p>R$ 12.000,20</p>
                       </div>
                     </CreditGranted>
 
                     <CreditAvailable>
-                      <button type="button">1</button>
+                      <button type="button" />
                       <div>
-                        <strong>R$ 12.000,20</strong>
-                        <p>Disponivel</p>
+                        <strong>Disponivel</strong>
+                        <p>R$ 12.000,20</p>
                       </div>
                     </CreditAvailable>
                   </CreditLimitContainer>
@@ -251,23 +239,27 @@ const Dashboard: React.FC = () => {
                     <h3>Títulos financeiros</h3>
 
                     <ExpiredFinances>
-                      <button type="button">1</button>
+                      <ExpiredFinancesButton type="button">
+                        1
+                      </ExpiredFinancesButton>
                       <div>
-                        <span>R$ 3.105,00</span>
+                        <strong>R$ 3.105,00</strong>
                         <p>Vencidos</p>
                       </div>
                     </ExpiredFinances>
                     <FinancesToExpire>
-                      <button type="button">1</button>
+                      <FinancesToExpireButton type="button">
+                        1
+                      </FinancesToExpireButton>
                       <div>
-                        <span>R$ 3.105,00</span>
+                        <strong>R$ 3.105,00</strong>
                         <p>A vencer</p>
                       </div>
                     </FinancesToExpire>
                     <PaidFinances>
-                      <button type="button">1</button>
+                      <PaidFinancesButton type="button">1</PaidFinancesButton>
                       <div>
-                        <span>R$ 3.105,00</span>
+                        <strong>R$ 3.105,00</strong>
                         <p>Pagos</p>
                       </div>
                     </PaidFinances>
@@ -283,10 +275,7 @@ const Dashboard: React.FC = () => {
                 <TextFieldActivity
                   id="outlined-basic"
                   label="Pesquisar"
-                  variant="filled"
-                  style={{
-                    background: '#A9A9A9',
-                  }}
+                  variant="outlined"
                   color="primary"
                 />
 
@@ -324,20 +313,19 @@ const Dashboard: React.FC = () => {
                     marginBottom: '20px',
                   }}
                 >
-                  <VerticalTimeline>
+                  <ActivityVerticalTimeline>
                     <VerticalTimelineElement
-                      className="vertical-timeline-element--work"
                       contentStyle={{
-                        background: 'rgb(33, 150, 243)',
-                        color: '#fff',
+                        background: '#FAF4F4',
                       }}
                       contentArrowStyle={{
-                        borderRight: '7px solid  rgb(33, 150, 243)',
+                        borderRight: '7px solid  #FAF4F4',
                       }}
                       date="2011 - present"
                       iconStyle={{
                         background: 'rgb(33, 150, 243)',
                         color: '#fff',
+                        boxShadow: '0 0 0 4px #0B89D1',
                       }}
                       icon={<Work />}
                     >
@@ -365,6 +353,7 @@ const Dashboard: React.FC = () => {
                       iconStyle={{
                         background: 'rgb(33, 150, 243)',
                         color: '#fff',
+                        boxShadow: '0 0 0 4px #0B89D1',
                       }}
                       icon={<Work />}
                     >
@@ -381,15 +370,15 @@ const Dashboard: React.FC = () => {
                     <VerticalTimelineElement
                       className="vertical-timeline-element--work"
                       date="2008 - 2010"
+                      contentStyle={{
+                        background: 'rgb(33, 150, 243)',
+                        color: '#fff',
+                      }}
                       iconStyle={{
                         background: 'rgb(33, 150, 243)',
                         color: '#fff',
                       }}
                       icon={<Work />}
-                      contentStyle={{
-                        background: 'rgb(33, 150, 243)',
-                        color: '#fff',
-                      }}
                     >
                       <h3 className="vertical-timeline-element-title">
                         Reunião de custos
@@ -411,7 +400,6 @@ const Dashboard: React.FC = () => {
                       icon={<Work />}
                       contentStyle={{
                         background: 'rgb(33, 150, 243)',
-                        color: '#fff',
                       }}
                     >
                       <h3 className="vertical-timeline-element-title">
@@ -434,7 +422,6 @@ const Dashboard: React.FC = () => {
                       icon={<School />}
                       contentStyle={{
                         background: 'rgb(233, 30, 99)',
-                        color: '#fff',
                       }}
                     >
                       <h3 className="vertical-timeline-element-title">
@@ -454,7 +441,7 @@ const Dashboard: React.FC = () => {
                       }}
                       icon={<Star />}
                     />
-                  </VerticalTimeline>
+                  </ActivityVerticalTimeline>
                 </Element>
               </CardActivitiesContainer>
             </ActivityInfoContainer>
