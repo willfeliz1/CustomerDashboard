@@ -1,5 +1,7 @@
 import React from 'react';
+
 import 'react-vertical-timeline-component/style.min.css';
+
 import { Element } from 'react-scroll';
 
 import { createStyles, Grid, makeStyles, Theme } from '@material-ui/core';
@@ -20,6 +22,10 @@ import {
 import { Link } from 'react-router-dom';
 
 import { VerticalTimelineElement } from 'react-vertical-timeline-component';
+
+import CanvasJSReact from '../../assets/canvasjs.react.js';
+
+import databaseMock from '../../database/databaseMock.json';
 
 import DrawerMenu from '../../components/DrawerMenu';
 
@@ -84,6 +90,8 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Dashboard: React.FC = () => {
   const classes = useStyles();
+
+  const { CanvasJSChart } = CanvasJSReact;
 
   return (
     <Container>
@@ -223,15 +231,9 @@ const Dashboard: React.FC = () => {
                 <Grid item sm={6} xs={12}>
                   <SalesContainer>
                     <h3>Vendas</h3>
-                    <SalesGraphic>
-                      <div>Grafico aqui</div>
-                      <div>Grafico aqui</div>
-                      <div>Grafico aqui</div>
-                      <div>Grafico aqui</div>
-                      <div>Grafico aqui</div>
-                      <div>Grafico aqui</div>
-                      <div>Grafico aqui</div>
-                    </SalesGraphic>
+                    {/* <SalesGraphic> */}
+                    <CanvasJSChart options={databaseMock.dadosGraficoVendas} />
+                    {/* </SalesGraphic> */}
                   </SalesContainer>
                 </Grid>
                 <Grid item sm={6} xs={12}>
