@@ -1,10 +1,13 @@
 import { Grid, TextField } from '@material-ui/core';
-import { Timeline } from '@material-ui/lab';
 import { VerticalTimeline } from 'react-vertical-timeline-component';
 import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
+
+  p {
+    color: #7f7f7f;
+  }
 `;
 
 export const Main = styled.main`
@@ -120,9 +123,11 @@ export const EmployerMail = styled.div`
 export const EmployerSocialMedia = styled.div`
   display: flex;
   margin-top: auto;
+  justify-content: left;
+  width: 100%;
 
   svg {
-    margin: 0 20px 0 10px;
+    margin-right: 35px;
   }
 `;
 
@@ -149,6 +154,20 @@ export const CardLocal = styled.div`
     font-size: 19px;
   }
 `;
+
+export const AdressDescription = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 10px;
+  strong {
+    padding-top: 3px;
+  }
+`;
+
+// export const LocationMap = styled.div`
+//   height: 180px;
+// `;
 
 export const OpportunitiesContainer = styled.section`
   min-width: 300;
@@ -283,13 +302,6 @@ export const CreditGranted = styled.div`
     margin-right: 10px;
     background-color: #4169e1;
   }
-
-  strong {
-  }
-
-  p {
-    color: #2d2d2d;
-  }
 `;
 
 export const CreditAvailable = styled.div`
@@ -302,13 +314,6 @@ export const CreditAvailable = styled.div`
     border-radius: 5px;
     margin-right: 10px;
     background-color: #008000;
-  }
-
-  strong {
-  }
-
-  p {
-    color: #2d2d2d;
   }
 `;
 
