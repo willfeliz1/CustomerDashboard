@@ -17,6 +17,11 @@ import {
   School,
   Star,
   Room,
+  Phone,
+  People,
+  MailOutline,
+  CalendarToday,
+  ContactSupport,
 } from '@material-ui/icons';
 
 import { Link } from 'react-router-dom';
@@ -128,6 +133,21 @@ const Dashboard: React.FC = () => {
 
       default:
         return '#4169e1';
+    }
+  }, []);
+
+  const addStateType = useCallback((type) => {
+    switch (type) {
+      case 'ligacao':
+        return <Phone />;
+      case 'reuniao':
+        return <People />;
+      case 'email':
+        return <MailOutline />;
+      case 'almoco':
+        return <CalendarToday />;
+      default:
+        return <ContactSupport />;
     }
   }, []);
 
@@ -366,7 +386,7 @@ const Dashboard: React.FC = () => {
                         iconStyle={{
                           background: addStateColor(activityState.state),
                         }}
-                        icon={<Work />}
+                        icon={addStateType(activityState.type)}
                       >
                         <h3 className="vertical-timeline-element-title">
                           {activityState.activity}
