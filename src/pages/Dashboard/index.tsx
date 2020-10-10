@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
-import 'react-vertical-timeline-component/style.min.css';
+import '../../components/TimeLine/style.css';
 
 import { Element } from 'react-scroll';
 
@@ -77,6 +77,19 @@ import {
 
 import LeafletMap from '../../components/LeafletMap';
 
+interface IActivity {
+  date: string;
+  type: string;
+  activity: string;
+  local: string;
+  name: string;
+  state: string;
+}
+
+interface IStatesColor {
+  color: '#ff0000 | #4169e1 | #b8860b | #008000';
+}
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     toolbar: {
@@ -92,6 +105,31 @@ const Dashboard: React.FC = () => {
   const classes = useStyles();
 
   const { CanvasJSChart } = CanvasJSReact;
+
+  const stateColors = ['#ff0000', '#4169e1', '#b8860b', '#008000'];
+
+  const [Activities, setActivities] = useState<IActivity[]>([]);
+  // const [StateColors, setStateColors] = useState<IStatesColor>();
+
+  useEffect(() => {
+    setActivities(databaseMock.TimelineActivities);
+  }, [Activities]);
+
+  const addStateColor = useCallback((state) => {
+    switch (state) {
+      case 'atrasado':
+        return '#ff0000';
+
+      case 'prevista':
+        return '#b8860b';
+
+      case 'concluida':
+        return '#008000';
+
+      default:
+        return '#4169e1';
+    }
+  }, []);
 
   return (
     <Container>
@@ -231,9 +269,7 @@ const Dashboard: React.FC = () => {
                 <Grid item sm={6} xs={12}>
                   <SalesContainer>
                     <h3>Vendas</h3>
-                    {/* <SalesGraphic> */}
-                    <CanvasJSChart options={databaseMock.dadosGraficoVendas} />
-                    {/* </SalesGraphic> */}
+                    {/* <CanvasJSChart options={databaseMock.dadosGraficoVendas} /> */}
                   </SalesContainer>
                 </Grid>
                 <Grid item sm={6} xs={12}>
@@ -316,126 +352,34 @@ const Dashboard: React.FC = () => {
                   }}
                 >
                   <ActivityVerticalTimeline>
-                    <VerticalTimelineElement
-                      contentStyle={{
-                        background: '#FAF4F4',
-                      }}
-                      contentArrowStyle={{
-                        borderRight: '7px solid  #FAF4F4',
-                      }}
-                      date="2011 - present"
-                      iconStyle={{
-                        background: 'rgb(33, 150, 243)',
-                        color: '#fff',
-                        boxShadow: '0 0 0 4px #0B89D1',
-                      }}
-                      icon={<Work />}
-                    >
-                      <h3 className="vertical-timeline-element-title">
-                        Reunião de custos
-                      </h3>
-                      <h5 className="vertical-timeline-element-subtitle">
-                        Local: Sala de reunião
-                      </h5>
-                      <h5 className="vertical-timeline-element-subtitle">
-                        Responsavel: William Felizardo
-                      </h5>
-                    </VerticalTimelineElement>
+                    {Activities.map((activityState) => (
+                      <VerticalTimelineElement
+                        contentStyle={{
+                          background: addStateColor(activityState.state),
+                        }}
+                        contentArrowStyle={{
+                          borderRight: `7px solid ${addStateColor(
+                            activityState.state,
+                          )}`,
+                        }}
+                        date={activityState.date}
+                        iconStyle={{
+                          background: addStateColor(activityState.state),
+                        }}
+                        icon={<Work />}
+                      >
+                        <h3 className="vertical-timeline-element-title">
+                          {activityState.activity}
+                        </h3>
+                        <h5 className="vertical-timeline-element-subtitle">
+                          Local: {activityState.local}
+                        </h5>
+                        <h5 className="vertical-timeline-element-subtitle">
+                          Responsavel: {activityState.name}
+                        </h5>
+                      </VerticalTimelineElement>
+                    ))}
 
-                    <VerticalTimelineElement
-                      className="vertical-timeline-element--work"
-                      contentStyle={{
-                        background: 'rgb(33, 150, 243)',
-                        color: '#fff',
-                      }}
-                      contentArrowStyle={{
-                        borderRight: '7px solid  rgb(33, 150, 243)',
-                      }}
-                      date="2011 - present"
-                      iconStyle={{
-                        background: 'rgb(33, 150, 243)',
-                        color: '#fff',
-                        boxShadow: '0 0 0 4px #0B89D1',
-                      }}
-                      icon={<Work />}
-                    >
-                      <h3 className="vertical-timeline-element-title">
-                        Reunião de custos
-                      </h3>
-                      <h5 className="vertical-timeline-element-subtitle">
-                        Local: Sala de reunião
-                      </h5>
-                      <h5 className="vertical-timeline-element-subtitle">
-                        Responsavel: William Felizardo
-                      </h5>
-                    </VerticalTimelineElement>
-                    <VerticalTimelineElement
-                      className="vertical-timeline-element--work"
-                      date="2008 - 2010"
-                      contentStyle={{
-                        background: 'rgb(33, 150, 243)',
-                        color: '#fff',
-                      }}
-                      iconStyle={{
-                        background: 'rgb(33, 150, 243)',
-                        color: '#fff',
-                      }}
-                      icon={<Work />}
-                    >
-                      <h3 className="vertical-timeline-element-title">
-                        Reunião de custos
-                      </h3>
-                      <h5 className="vertical-timeline-element-subtitle">
-                        Local: Sala de reunião
-                      </h5>
-                      <h5 className="vertical-timeline-element-subtitle">
-                        Responsavel: William Felizardo
-                      </h5>
-                    </VerticalTimelineElement>
-                    <VerticalTimelineElement
-                      className="vertical-timeline-element--work"
-                      date="2006 - 2008"
-                      iconStyle={{
-                        background: 'rgb(33, 150, 243)',
-                        color: '#fff',
-                      }}
-                      icon={<Work />}
-                      contentStyle={{
-                        background: 'rgb(33, 150, 243)',
-                      }}
-                    >
-                      <h3 className="vertical-timeline-element-title">
-                        Reunião de custos
-                      </h3>
-                      <h5 className="vertical-timeline-element-subtitle">
-                        Local: Sala de reunião
-                      </h5>
-                      <h5 className="vertical-timeline-element-subtitle">
-                        Responsavel: William Felizardo
-                      </h5>
-                    </VerticalTimelineElement>
-                    <VerticalTimelineElement
-                      className="vertical-timeline-element--education"
-                      date="April 2013"
-                      iconStyle={{
-                        background: 'rgb(233, 30, 99)',
-                        color: '#fff',
-                      }}
-                      icon={<School />}
-                      contentStyle={{
-                        background: 'rgb(233, 30, 99)',
-                      }}
-                    >
-                      <h3 className="vertical-timeline-element-title">
-                        Reunião de custos
-                      </h3>
-                      <h5 className="vertical-timeline-element-subtitle">
-                        Local: Sala de reunião
-                      </h5>
-                      <h5 className="vertical-timeline-element-subtitle">
-                        Responsavel: William Felizardo
-                      </h5>
-                    </VerticalTimelineElement>
                     <VerticalTimelineElement
                       iconStyle={{
                         background: 'rgb(16, 204, 82)',
