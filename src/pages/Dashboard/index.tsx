@@ -13,8 +13,6 @@ import {
   Instagram,
   Twitter,
   LinkedIn,
-  Work,
-  School,
   Star,
   Room,
   Phone,
@@ -60,7 +58,6 @@ import {
   CreditGranted,
   CreditAvailable,
   SalesContainer,
-  SalesGraphic,
   FinancialSecurityContainer,
   ExpiredFinances,
   ExpiredFinancesButton,
@@ -69,7 +66,6 @@ import {
   PaidFinances,
   PaidFinancesButton,
   CardActivitiesContainer,
-  HeaderActivity,
   TextFieldActivity,
   ActivityOptions,
   TotalActivity,
@@ -109,9 +105,9 @@ const useStyles = makeStyles((theme: Theme) =>
 const Dashboard: React.FC = () => {
   const classes = useStyles();
 
-  const { CanvasJSChart } = CanvasJSReact;
+  // const { CanvasJSChart } = CanvasJSReact;
 
-  const stateColors = ['#ff0000', '#4169e1', '#b8860b', '#008000'];
+  // const stateColors = ['#ff0000', '#4169e1', '#b8860b', '#008000'];
 
   const [Activities, setActivities] = useState<IActivity[]>([]);
   // const [StateColors, setStateColors] = useState<IStatesColor>();
@@ -150,6 +146,17 @@ const Dashboard: React.FC = () => {
         return <ContactSupport />;
     }
   }, []);
+
+  const ActivityLength = useCallback(
+    (state: string) => {
+      const activityLength = Activities.filter(
+        (activity) => activity.state === state,
+      ).length;
+
+      return activityLength;
+    },
+    [Activities],
+  );
 
   return (
     <Container>
@@ -339,23 +346,23 @@ const Dashboard: React.FC = () => {
 
                 <ActivityOptions>
                   <TotalActivity>
-                    <button type="button">4</button>
+                    <button type="button">{Activities.length}</button>
                     <span>Total</span>
                   </TotalActivity>
                   <OverdueActivity>
-                    <button type="button">4</button>
+                    <button type="button">{ActivityLength('atrasado')}</button>
                     <span>Atrasados</span>
                   </OverdueActivity>
                   <InProcessActivity>
-                    <button type="button">4</button>
+                    <button type="button">{ActivityLength('andamento')}</button>
                     <span>Andamento</span>
                   </InProcessActivity>
                   <ForeseenActivity>
-                    <button type="button">4</button>
+                    <button type="button">{ActivityLength('prevista')}</button>
                     <span>Previstas</span>
                   </ForeseenActivity>
                   <CompletedActivity>
-                    <button type="button">4</button>
+                    <button type="button">{ActivityLength('concluida')}</button>
                     <span>Concluidas</span>
                   </CompletedActivity>
                 </ActivityOptions>
