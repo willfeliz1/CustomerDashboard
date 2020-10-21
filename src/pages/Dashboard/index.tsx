@@ -110,11 +110,23 @@ const Dashboard: React.FC = () => {
   // const stateColors = ['#ff0000', '#4169e1', '#b8860b', '#008000'];
 
   const [Activities, setActivities] = useState<IActivity[]>([]);
+  const [search, setSearch] = useState('');
+  const [filteredActivities, setFilteredActivities] = useState<IActivity[]>([]);
   // const [StateColors, setStateColors] = useState<IStatesColor>();
 
   useEffect(() => {
     setActivities(databaseMock.TimelineActivities);
   }, [Activities]);
+
+  useEffect(() => {
+    setFilteredActivities(
+      Activities.filter((activityState) => {
+        return activityState.activity
+          .toLowerCase()
+          .includes(search.toLowerCase());
+      }),
+    );
+  }, [Activities, search]);
 
   const addStateColor = useCallback((state) => {
     switch (state) {
@@ -157,6 +169,12 @@ const Dashboard: React.FC = () => {
     },
     [Activities],
   );
+
+  // const FilterActivity = useCallback((state: string) => {
+  //   setActivities((activityArray) =>
+  //     activityArray.filter((activity) => activity.state === state),
+  //   );
+  // }, []);
 
   return (
     <Container>
@@ -342,6 +360,7 @@ const Dashboard: React.FC = () => {
                   label="Pesquisar"
                   variant="outlined"
                   color="primary"
+                  onChange={(e) => setSearch(e.target.value)}
                 />
 
                 <ActivityOptions>
@@ -379,7 +398,7 @@ const Dashboard: React.FC = () => {
                   }}
                 >
                   <ActivityVerticalTimeline>
-                    {Activities.map((activityState) => (
+                    {filteredActivities.map((activityState) => (
                       <VerticalTimelineElement
                         contentStyle={{
                           background: addStateColor(activityState.state),
