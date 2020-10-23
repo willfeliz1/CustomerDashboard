@@ -111,9 +111,7 @@ const Dashboard: React.FC = () => {
 
   const [Activities, setActivities] = useState<IActivity[]>([]);
   const [search, setSearch] = useState('');
-  const [filteredActivitiesBySearch, setFilteredActivitiesBySearch] = useState<
-    IActivity[]
-  >([]);
+  const [filteredActivities, setFilteredActivities] = useState<IActivity[]>([]);
   const [buttonsActivity, setButtonsActivity] = useState('total');
 
   useEffect(() => {
@@ -121,13 +119,17 @@ const Dashboard: React.FC = () => {
   }, []);
 
   function filterByActivity() {
-    return setFilteredActivitiesBySearch(
-      Activities.filter((activity) => activity.state === buttonsActivity),
+    return setFilteredActivities(
+      Activities.filter(
+        (activityState) =>
+          activityState.state === buttonsActivity &&
+          activityState.activity.toLowerCase().includes(search.toLowerCase()),
+      ),
     );
   }
 
   useEffect(() => {
-    setFilteredActivitiesBySearch(
+    setFilteredActivities(
       Activities.filter((activityState) =>
         activityState.activity.toLowerCase().includes(search.toLowerCase()),
       ),
@@ -411,7 +413,7 @@ const Dashboard: React.FC = () => {
                   }}
                 >
                   <ActivityVerticalTimeline>
-                    {filteredActivitiesBySearch.map((activityState) => (
+                    {filteredActivities.map((activityState) => (
                       <VerticalTimelineElement
                         contentStyle={{
                           background: addStateColor(activityState.state),
