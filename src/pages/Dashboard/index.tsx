@@ -26,7 +26,7 @@ import { Link } from 'react-router-dom';
 
 import { VerticalTimelineElement } from 'react-vertical-timeline-component';
 
-import CanvasJSReact from '../../assets/canvasjs.react.js';
+// import CanvasJSReact from '../../assets/canvasjs.react.js';
 
 import databaseMock from '../../database/databaseMock.json';
 
@@ -87,9 +87,9 @@ interface IActivity {
   state: string;
 }
 
-interface IStatesColor {
-  color: '#ff0000 | #4169e1 | #b8860b | #008000';
-}
+// interface IStatesColor {
+//   color: '#ff0000 | #4169e1 | #b8860b | #008000';
+// }
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -114,34 +114,27 @@ const Dashboard: React.FC = () => {
   const [filteredActivitiesBySearch, setFilteredActivitiesBySearch] = useState<
     IActivity[]
   >([]);
-  const [buttonsActivity, setButtonsActivity] = useState('');
+  const [buttonsActivity, setButtonsActivity] = useState('total');
 
   useEffect(() => {
     setActivities(databaseMock.TimelineActivities);
-  }, [Activities]);
+  }, []);
+
+  function filterByActivity() {
+    return setFilteredActivitiesBySearch(
+      Activities.filter((activity) => activity.state === buttonsActivity),
+    );
+  }
 
   useEffect(() => {
-    function FilterActivity(state: string) {
-      return Activities.filter((activity) => activity.state === state);
-    }
-
     setFilteredActivitiesBySearch(
-      Activities.filter((activityState) => {
-        if (buttonsActivity === 'atrasado') {
-          const teste = FilterActivity(buttonsActivity);
-
-          setActivities(teste);
-
-          return teste.filter((testef) =>
-            testef.activity.toLowerCase().includes(search.toLowerCase()),
-          );
-        }
-        setButtonsActivity('errado');
-        return activityState.activity
-          .toLowerCase()
-          .includes(search.toLowerCase());
-      }),
+      Activities.filter((activityState) =>
+        activityState.activity.toLowerCase().includes(search.toLowerCase()),
+      ),
     );
+    if (buttonsActivity !== 'total') {
+      filterByActivity();
+    }
   }, [Activities, search, buttonsActivity]);
 
   const addStateColor = useCallback((state) => {
@@ -375,7 +368,12 @@ const Dashboard: React.FC = () => {
 
                 <ActivityOptions>
                   <TotalActivity>
-                    <button type="button">{Activities.length}</button>
+                    <button
+                      type="button"
+                      onClick={() => setButtonsActivity('total')}
+                    >
+                      {Activities.length}
+                    </button>
                     <span>Total</span>
                   </TotalActivity>
                   <OverdueActivity>
