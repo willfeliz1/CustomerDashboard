@@ -111,22 +111,38 @@ const Dashboard: React.FC = () => {
 
   const [Activities, setActivities] = useState<IActivity[]>([]);
   const [search, setSearch] = useState('');
-  const [filteredActivities, setFilteredActivities] = useState<IActivity[]>([]);
-  // const [StateColors, setStateColors] = useState<IStatesColor>();
+  const [filteredActivitiesBySearch, setFilteredActivitiesBySearch] = useState<
+    IActivity[]
+  >([]);
+  const [buttonsActivity, setButtonsActivity] = useState('');
 
   useEffect(() => {
     setActivities(databaseMock.TimelineActivities);
   }, [Activities]);
 
   useEffect(() => {
-    setFilteredActivities(
+    function FilterActivity(state: string) {
+      return Activities.filter((activity) => activity.state === state);
+    }
+
+    setFilteredActivitiesBySearch(
       Activities.filter((activityState) => {
+        if (buttonsActivity === 'atrasado') {
+          const teste = FilterActivity(buttonsActivity);
+
+          setActivities(teste);
+
+          return teste.filter((testef) =>
+            testef.activity.toLowerCase().includes(search.toLowerCase()),
+          );
+        }
+        setButtonsActivity('errado');
         return activityState.activity
           .toLowerCase()
           .includes(search.toLowerCase());
       }),
     );
-  }, [Activities, search]);
+  }, [Activities, search, buttonsActivity]);
 
   const addStateColor = useCallback((state) => {
     switch (state) {
@@ -169,12 +185,6 @@ const Dashboard: React.FC = () => {
     },
     [Activities],
   );
-
-  // const FilterActivity = useCallback((state: string) => {
-  //   setActivities((activityArray) =>
-  //     activityArray.filter((activity) => activity.state === state),
-  //   );
-  // }, []);
 
   return (
     <Container>
@@ -369,7 +379,12 @@ const Dashboard: React.FC = () => {
                     <span>Total</span>
                   </TotalActivity>
                   <OverdueActivity>
-                    <button type="button">{ActivityLength('atrasado')}</button>
+                    <button
+                      type="button"
+                      onClick={() => setButtonsActivity('atrasado')}
+                    >
+                      {ActivityLength('atrasado')}
+                    </button>
                     <span>Atrasados</span>
                   </OverdueActivity>
                   <InProcessActivity>
@@ -398,7 +413,7 @@ const Dashboard: React.FC = () => {
                   }}
                 >
                   <ActivityVerticalTimeline>
-                    {filteredActivities.map((activityState) => (
+                    {filteredActivitiesBySearch.map((activityState) => (
                       <VerticalTimelineElement
                         contentStyle={{
                           background: addStateColor(activityState.state),
