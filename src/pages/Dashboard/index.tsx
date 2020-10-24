@@ -388,15 +388,30 @@ const Dashboard: React.FC = () => {
                     <span>Atrasados</span>
                   </OverdueActivity>
                   <InProcessActivity>
-                    <button type="button">{ActivityLength('andamento')}</button>
+                    <button
+                      type="button"
+                      onClick={() => setButtonsActivity('andamento')}
+                    >
+                      {ActivityLength('andamento')}
+                    </button>
                     <span>Andamento</span>
                   </InProcessActivity>
                   <ForeseenActivity>
-                    <button type="button">{ActivityLength('prevista')}</button>
+                    <button
+                      type="button"
+                      onClick={() => setButtonsActivity('prevista')}
+                    >
+                      {ActivityLength('prevista')}
+                    </button>
                     <span>Previstas</span>
                   </ForeseenActivity>
                   <CompletedActivity>
-                    <button type="button">{ActivityLength('concluida')}</button>
+                    <button
+                      type="button"
+                      onClick={() => setButtonsActivity('concluida')}
+                    >
+                      {ActivityLength('concluida')}
+                    </button>
                     <span>Concluidas</span>
                   </CompletedActivity>
                 </ActivityOptions>
