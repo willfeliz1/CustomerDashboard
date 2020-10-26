@@ -87,16 +87,21 @@ interface IActivity {
   state: string;
 }
 
-// interface IStatesColor {
-//   color: '#ff0000 | #4169e1 | #b8860b | #008000';
-// }
+interface IContact {
+  id: number;
+  nome: string;
+  celular: string;
+  email: string;
+  tipoContato: string;
+  empresaAtual: string;
+  status: string;
+}
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     toolbar: {
       display: 'flex',
       padding: theme.spacing(0, 1),
-      // necessary for content to be below app bar
       ...theme.mixins.toolbar,
     },
   }),
@@ -107,15 +112,15 @@ const Dashboard: React.FC = () => {
 
   // const { CanvasJSChart } = CanvasJSReact;
 
-  // const stateColors = ['#ff0000', '#4169e1', '#b8860b', '#008000'];
-
   const [Activities, setActivities] = useState<IActivity[]>([]);
   const [search, setSearch] = useState('');
   const [filteredActivities, setFilteredActivities] = useState<IActivity[]>([]);
   const [buttonsActivity, setButtonsActivity] = useState('total');
+  const [contact, setContact] = useState<IContact>();
 
   useEffect(() => {
     setActivities(databaseMock.TimelineActivities);
+    setContact(databaseMock.User);
   }, []);
 
   function filterByActivity() {
@@ -200,15 +205,15 @@ const Dashboard: React.FC = () => {
                         alt="imagemGitHub"
                       />
                       <div>
-                        <strong>William Felizardo</strong>
-                        <p>Amazon Prime</p>
+                        <strong>{contact?.nome}</strong>
+                        <p>{contact?.empresaAtual}</p>
                       </div>
                     </EmployerName>
 
                     <EmployerPhone>
                       <FiPhone />
                       <div>
-                        <strong>44 9 97548484</strong>
+                        <strong>{contact?.celular}</strong>
                         <p>Celular</p>
                       </div>
                     </EmployerPhone>
@@ -216,7 +221,7 @@ const Dashboard: React.FC = () => {
                     <EmployerMail>
                       <FiMail />
                       <div>
-                        <strong>WilliamFelizardo@mail.com</strong>
+                        <strong>{contact?.email}</strong>
                         <p>Trabalho</p>
                       </div>
                     </EmployerMail>
@@ -378,7 +383,7 @@ const Dashboard: React.FC = () => {
                     </button>
                     <span>Total</span>
                   </TotalActivity>
-                  <OverdueActivity>
+                  <OverdueActivity tabIndex={-1}>
                     <button
                       type="button"
                       onClick={() => setButtonsActivity('atrasado')}
@@ -387,7 +392,7 @@ const Dashboard: React.FC = () => {
                     </button>
                     <span>Atrasados</span>
                   </OverdueActivity>
-                  <InProcessActivity>
+                  <InProcessActivity tabIndex={-1}>
                     <button
                       type="button"
                       onClick={() => setButtonsActivity('andamento')}
@@ -396,7 +401,7 @@ const Dashboard: React.FC = () => {
                     </button>
                     <span>Andamento</span>
                   </InProcessActivity>
-                  <ForeseenActivity>
+                  <ForeseenActivity tabIndex={-1}>
                     <button
                       type="button"
                       onClick={() => setButtonsActivity('prevista')}

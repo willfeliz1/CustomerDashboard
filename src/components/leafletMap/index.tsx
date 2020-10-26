@@ -1,25 +1,37 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
-import { LatLngTuple } from 'leaflet';
+import { TileLayer, Marker, Popup, Map } from 'react-leaflet';
 
-import { EmojiEmotionsOutlined } from '@material-ui/icons';
-import { MapLocation } from './styles';
+import databaseMock from '../../database/databaseMock.json';
 
-const defaultLatLng: LatLngTuple = [-23.7599142, -53.3032763];
 const zoom = 15;
 
+interface ILocal {
+  lat: number;
+  lng: number;
+}
+
 const LeafletMap: React.FC = () => {
+  const [local, setLocal] = useState<ILocal>({ lat: 0, lng: 0 });
+
+  useEffect(() => {
+    setLocal(databaseMock.User.latLngLocalTrabalho);
+  }, []);
+
   return (
-    <MapLocation center={defaultLatLng} zoom={zoom}>
+    <Map
+      center={[local.lat, local.lng]}
+      zoom={zoom}
+      style={{ width: '100%', height: '100%' }}
+    >
       <TileLayer
         attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <Marker position={defaultLatLng}>
+      <Marker position={[local.lat, local.lng]}>
         <Popup>Estamos aqui!!</Popup>
       </Marker>
-    </MapLocation>
+    </Map>
   );
 };
 
