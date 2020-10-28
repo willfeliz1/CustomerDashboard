@@ -15,7 +15,7 @@ const LeafletMap: React.FC = () => {
   const [local, setLocal] = useState<ILocal>({ lat: 0, lng: 0 });
 
   useEffect(() => {
-    setLocal(databaseMock.User.latLngLocalTrabalho);
+    setLocal(databaseMock.User.latLngLocalJob);
   }, []);
 
   return (
