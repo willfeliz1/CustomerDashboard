@@ -44,7 +44,6 @@ export const CardClient = styled.div`
   h3 {
     padding-bottom: 20px;
     align-self: center;
-    font-size: 19px;
   }
 `;
 
@@ -151,7 +150,6 @@ export const CardLocal = styled.div`
   h3 {
     padding-bottom: 20px;
     align-self: center;
-    font-size: 19px;
   }
 `;
 
@@ -197,12 +195,12 @@ export const OpportunityHeader = styled.div`
 
 export const ProfitLossOpportunity = styled.section`
   display: flex;
+  justify-content: space-between;
   margin-bottom: 25px;
 `;
 
 export const ProfitOpportunity = styled.div`
   display: flex;
-  margin-right: 18px;
 
   button {
     width: 40px;
@@ -231,11 +229,11 @@ export const LossOpportunity = styled.div`
 
 export const OpenDiscardOpportunity = styled.section`
   display: flex;
+  justify-content: space-between;
 `;
 
 export const OpenOpportunity = styled.div`
   display: flex;
-  margin-right: 18px;
 
   button {
     width: 40px;
@@ -286,7 +284,6 @@ export const CreditLimitContainer = styled.section`
   h3 {
     padding-bottom: 25px;
     align-self: center;
-    font-size: 19px;
   }
 `;
 
@@ -337,7 +334,6 @@ export const SalesContainer = styled.section`
   h3 {
     padding-bottom: 25px;
     align-self: center;
-    font-size: 19px;
   }
 `;
 
@@ -363,7 +359,6 @@ export const FinancialSecurityContainer = styled.section`
   h3 {
     padding-bottom: 25px;
     align-self: center;
-    font-size: 19px;
   }
 `;
 
@@ -453,7 +448,6 @@ export const CardActivitiesContainer = styled.section`
     display: flex;
     padding: 15px 0 15px 0;
     justify-content: center;
-    font-size: 19px;
   }
 `;
 
