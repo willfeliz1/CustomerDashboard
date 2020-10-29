@@ -6,7 +6,7 @@ interface IButtonColor {
 
 export const Container = styled.div`
   display: flex;
-  margin-right: 18px;
+  min-width: 155px;
 `;
 
 export const Button = styled.button<IButtonColor>`
