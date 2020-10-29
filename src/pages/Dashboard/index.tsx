@@ -77,6 +77,8 @@ import {
 } from './styles';
 
 import LeafletMap from '../../components/LeafletMap';
+import ButtonSpanStrong from '../../components/ButtonSpanStrong';
+import formatValue from '../../utils/formatValue';
 
 interface IActivity {
   date: string;
@@ -89,12 +91,32 @@ interface IActivity {
 
 interface IContact {
   id: number;
-  nome: string;
-  celular: string;
-  email: string;
-  tipoContato: string;
-  empresaAtual: string;
+  name: string;
+  cellphone: string;
+  mail: string;
+  contactType: string;
+  job: string;
   status: string;
+}
+
+interface IOpportunity {
+  idUser: number;
+  profits: {
+    quantityTotal: number;
+    valueTotal: number;
+  };
+  loss: {
+    quantityTotal: number;
+    valueTotal: number;
+  };
+  open: {
+    quantityTotal: number;
+    valueTotal: number;
+  };
+  discard: {
+    quantityTotal: number;
+    valueTotal: number;
+  };
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -117,10 +139,12 @@ const Dashboard: React.FC = () => {
   const [filteredActivities, setFilteredActivities] = useState<IActivity[]>([]);
   const [buttonsActivity, setButtonsActivity] = useState('total');
   const [contact, setContact] = useState<IContact>();
+  const [opportunities, setOpportunities] = useState<IOpportunity>();
 
   useEffect(() => {
     setActivities(databaseMock.TimelineActivities);
     setContact(databaseMock.User);
+    setOpportunities(databaseMock.Opportunities);
   }, []);
 
   function filterByActivity() {
@@ -205,15 +229,15 @@ const Dashboard: React.FC = () => {
                         alt="imagemGitHub"
                       />
                       <div>
-                        <strong>{contact?.nome}</strong>
-                        <p>{contact?.empresaAtual}</p>
+                        <strong>{contact?.name}</strong>
+                        <p>{contact?.job}</p>
                       </div>
                     </EmployerName>
 
                     <EmployerPhone>
                       <FiPhone />
                       <div>
-                        <strong>{contact?.celular}</strong>
+                        <strong>{contact?.cellphone}</strong>
                         <p>Celular</p>
                       </div>
                     </EmployerPhone>
@@ -221,7 +245,7 @@ const Dashboard: React.FC = () => {
                     <EmployerMail>
                       <FiMail />
                       <div>
-                        <strong>{contact?.email}</strong>
+                        <strong>{contact?.mail}</strong>
                         <p>Trabalho</p>
                       </div>
                     </EmployerMail>
@@ -258,36 +282,50 @@ const Dashboard: React.FC = () => {
                     </OpportunityHeader>
 
                     <ProfitLossOpportunity>
-                      <ProfitOpportunity>
-                        <button type="button">4</button>
-                        <div>
-                          <strong>Ganhas</strong>
-                          <p>R$ 20.000,00</p>
-                        </div>
-                      </ProfitOpportunity>
+                      <ButtonSpanStrong
+                        buttonColor="#008000"
+                        buttonText={opportunities?.profits.quantityTotal}
+                        title="Ganhas"
+                        description={String(
+                          opportunities?.profits.valueTotal &&
+                            formatValue(opportunities?.profits.valueTotal),
+                        )}
+                      />
                       <LossOpportunity>
-                        <button type="button">4</button>
-                        <div>
-                          <strong>Perdas</strong>
-                          <p>R$ 20.000,00</p>
-                        </div>
+                        <ButtonSpanStrong
+                          buttonColor="#ff0000"
+                          buttonText={opportunities?.loss.quantityTotal}
+                          title="Perdas"
+                          description={String(
+                            opportunities?.loss.valueTotal &&
+                              formatValue(opportunities?.loss.valueTotal),
+                          )}
+                        />
                       </LossOpportunity>
                     </ProfitLossOpportunity>
 
                     <OpenDiscardOpportunity>
                       <OpenOpportunity>
-                        <button type="button">4</button>
-                        <div>
-                          <strong>Abertos</strong>
-                          <p>R$ 20.000,00</p>
-                        </div>
+                        <ButtonSpanStrong
+                          buttonColor="#4169e1"
+                          buttonText={1}
+                          title="Abertos"
+                          description={String(
+                            opportunities?.open.valueTotal &&
+                              formatValue(opportunities?.open.valueTotal),
+                          )}
+                        />
                       </OpenOpportunity>
                       <DiscardOpportunity>
-                        <button type="button">4</button>
-                        <div>
-                          <strong>Descartados</strong>
-                          <p>R$ 20.000,00</p>
-                        </div>
+                        <ButtonSpanStrong
+                          buttonColor="#000"
+                          buttonText={1}
+                          title="Descartadas"
+                          description={String(
+                            opportunities?.discard.valueTotal &&
+                              formatValue(opportunities?.discard.valueTotal),
+                          )}
+                        />
                       </DiscardOpportunity>
                     </OpenDiscardOpportunity>
 
