@@ -119,6 +119,16 @@ interface IOpportunity {
   };
 }
 
+interface ICreditLimit {
+  idBeneficiary: number;
+  creditGranted: {
+    valueTotal: number;
+  };
+  creditAvailable: {
+    valueTotal: number;
+  };
+}
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     toolbar: {
@@ -140,11 +150,13 @@ const Dashboard: React.FC = () => {
   const [buttonsActivity, setButtonsActivity] = useState('total');
   const [contact, setContact] = useState<IContact>();
   const [opportunities, setOpportunities] = useState<IOpportunity>();
+  const [creditLimities, setCreditLimites] = useState<ICreditLimit>();
 
   useEffect(() => {
     setActivities(databaseMock.TimelineActivities);
     setContact(databaseMock.User);
     setOpportunities(databaseMock.Opportunities);
+    setCreditLimites(databaseMock.CreditLimit);
   }, []);
 
   function filterByActivity() {
@@ -340,20 +352,37 @@ const Dashboard: React.FC = () => {
                 <Grid item sm={6} xs={12}>
                   <CreditLimitContainer>
                     <h3>Limite de crédito</h3>
-                    <CreditGranted>
+                    {/* <CreditGranted>
                       <button type="button" />
                       <div>
                         <strong>Concedido</strong>
                         <p>R$ 12.000,20</p>
                       </div>
+                    </CreditGranted> */}
+                    <CreditGranted>
+                      <ButtonSpanStrong
+                        buttonColor="#4169e1"
+                        title="Concedido"
+                        description={String(
+                          creditLimities?.creditGranted.valueTotal &&
+                            formatValue(
+                              creditLimities.creditGranted.valueTotal,
+                            ),
+                        )}
+                      />
                     </CreditGranted>
 
                     <CreditAvailable>
-                      <button type="button" />
-                      <div>
-                        <strong>Disponivel</strong>
-                        <p>R$ 12.000,20</p>
-                      </div>
+                      <ButtonSpanStrong
+                        buttonColor="#008000"
+                        title="Disponivel"
+                        description={String(
+                          creditLimities?.creditAvailable.valueTotal &&
+                            formatValue(
+                              creditLimities.creditAvailable.valueTotal,
+                            ),
+                        )}
+                      />
                     </CreditAvailable>
                   </CreditLimitContainer>
                 </Grid>
@@ -362,7 +391,7 @@ const Dashboard: React.FC = () => {
                 <Grid item sm={6} xs={12}>
                   <SalesContainer>
                     <h3>Vendas</h3>
-                    {/* <CanvasJSChart options={databaseMock.dadosGraficoVendas} /> */}
+                    {/* <CanvasJSChart options={databaseMock.SalesGraphic} /> */}
                   </SalesContainer>
                 </Grid>
                 <Grid item sm={6} xs={12}>
