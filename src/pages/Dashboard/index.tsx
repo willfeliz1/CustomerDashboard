@@ -129,6 +129,21 @@ interface ICreditLimit {
   };
 }
 
+interface IFinancialSecurity {
+  expired: {
+    quantityTotal: number;
+    valueTotal: number;
+  };
+  paid: {
+    quantityTotal: number;
+    valueTotal: number;
+  };
+  financesToExpire: {
+    quantityTotal: number;
+    valueTotal: number;
+  };
+}
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     toolbar: {
@@ -151,12 +166,16 @@ const Dashboard: React.FC = () => {
   const [contact, setContact] = useState<IContact>();
   const [opportunities, setOpportunities] = useState<IOpportunity>();
   const [creditLimities, setCreditLimites] = useState<ICreditLimit>();
+  const [financialSecurities, setFinancialSecurities] = useState<
+    IFinancialSecurity
+  >();
 
   useEffect(() => {
     setActivities(databaseMock.TimelineActivities);
     setContact(databaseMock.User);
     setOpportunities(databaseMock.Opportunities);
     setCreditLimites(databaseMock.CreditLimit);
+    setFinancialSecurities(databaseMock.financialSecurity);
   }, []);
 
   function filterByActivity() {
@@ -399,29 +418,43 @@ const Dashboard: React.FC = () => {
                     <h3>Títulos financeiros</h3>
 
                     <ExpiredFinances>
-                      <ExpiredFinancesButton type="button">
-                        1
-                      </ExpiredFinancesButton>
-                      <div>
-                        <strong>R$ 3.105,00</strong>
-                        <p>Vencidos</p>
-                      </div>
+                      <ButtonSpanStrong
+                        buttonColor="#ff0000"
+                        buttonText={financialSecurities?.expired.quantityTotal}
+                        title={String(
+                          financialSecurities?.expired.valueTotal &&
+                            formatValue(
+                              financialSecurities?.expired.valueTotal,
+                            ),
+                        )}
+                        description="Vencidos"
+                      />
                     </ExpiredFinances>
                     <FinancesToExpire>
-                      <FinancesToExpireButton type="button">
-                        1
-                      </FinancesToExpireButton>
-                      <div>
-                        <strong>R$ 3.105,00</strong>
-                        <p>A vencer</p>
-                      </div>
+                      <ButtonSpanStrong
+                        buttonColor="#b8860b"
+                        buttonText={
+                          financialSecurities?.financesToExpire.quantityTotal
+                        }
+                        title={String(
+                          financialSecurities?.financesToExpire.valueTotal &&
+                            formatValue(
+                              financialSecurities?.financesToExpire.valueTotal,
+                            ),
+                        )}
+                        description="A vencer"
+                      />
                     </FinancesToExpire>
                     <PaidFinances>
-                      <PaidFinancesButton type="button">1</PaidFinancesButton>
-                      <div>
-                        <strong>R$ 3.105,00</strong>
-                        <p>Pagos</p>
-                      </div>
+                      <ButtonSpanStrong
+                        buttonColor="#008000"
+                        buttonText={financialSecurities?.paid.quantityTotal}
+                        title={String(
+                          financialSecurities?.paid.valueTotal &&
+                            formatValue(financialSecurities?.paid.valueTotal),
+                        )}
+                        description="Pagos"
+                      />
                     </PaidFinances>
                   </FinancialSecurityContainer>
                 </Grid>
