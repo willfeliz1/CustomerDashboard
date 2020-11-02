@@ -52,16 +52,10 @@ export const EmployerName = styled.div`
   line-height: 24px;
   margin-top: 5px;
 
-  img {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-  }
-
   > div {
     display: flex;
     flex-direction: column;
-    margin: 8px 10px;
+    margin: 0px 10px 5px 0px;
 
     strong {
       font-size: 17px;
@@ -69,6 +63,42 @@ export const EmployerName = styled.div`
 
     p {
       font-size: 14px;
+    }
+  }
+`;
+
+export const AvatarInput = styled.div`
+  position: relative;
+
+  img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+  }
+
+  label {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    border: none;
+    background: #f6f6f6;
+    border-radius: 50%;
+    right: 0;
+    bottom: 0;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 17px;
+      height: 17px;
+      color: #312e38;
+    }
+
+    input {
+      display: none;
     }
   }
 `;
