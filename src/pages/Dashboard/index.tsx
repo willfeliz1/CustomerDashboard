@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
 
 import '../../components/TimeLine/style.css';
 
@@ -20,6 +20,7 @@ import {
   MailOutline,
   CalendarToday,
   ContactSupport,
+  CameraAlt,
 } from '@material-ui/icons';
 
 import { Link } from 'react-router-dom';
@@ -48,7 +49,6 @@ import {
   OpportunitiesContainer,
   OpportunityHeader,
   ProfitLossOpportunity,
-  ProfitOpportunity,
   LossOpportunity,
   OpenDiscardOpportunity,
   OpenOpportunity,
@@ -60,11 +60,8 @@ import {
   SalesContainer,
   FinancialSecurityContainer,
   ExpiredFinances,
-  ExpiredFinancesButton,
   FinancesToExpire,
-  FinancesToExpireButton,
   PaidFinances,
-  PaidFinancesButton,
   CardActivitiesContainer,
   TextFieldActivity,
   ActivityOptions,
@@ -74,6 +71,7 @@ import {
   CompletedActivity,
   ForeseenActivity,
   ActivityVerticalTimeline,
+  AvatarInput,
 } from './styles';
 
 import LeafletMap from '../../components/LeafletMap';
@@ -97,6 +95,7 @@ interface IContact {
   contactType: string;
   job: string;
   status: string;
+  avatarUrl: string;
 }
 
 interface IOpportunity {
@@ -241,6 +240,16 @@ const Dashboard: React.FC = () => {
     [Activities],
   );
 
+  const handleAvatarChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const data = new FormData();
+
+      data.append('avatar', e.target.files[0]);
+
+      console.log(e.target.files);
+    }
+  }, []);
+
   return (
     <Container>
       <DrawerMenu />
@@ -255,10 +264,19 @@ const Dashboard: React.FC = () => {
                     <h3>Informações gerais</h3>
 
                     <EmployerName>
-                      <img
-                        src="https://avatars2.githubusercontent.com/u/50719156?s=460&u=81ec30b299ffe9d9275b4e207d9c4760fcada87a&v=4"
-                        alt="imagemGitHub"
-                      />
+                      <AvatarInput>
+                        <img src={contact?.avatarUrl} alt="imageGit" />
+                        <label htmlFor="avatar">
+                          <CameraAlt />
+
+                          <input
+                            type="file"
+                            id="avatar"
+                            onChange={handleAvatarChange}
+                          />
+                        </label>
+                      </AvatarInput>
+
                       <div>
                         <strong>{contact?.name}</strong>
                         <p>{contact?.job}</p>
