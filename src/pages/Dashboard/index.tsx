@@ -27,7 +27,7 @@ import { Link } from 'react-router-dom';
 
 import { VerticalTimelineElement } from 'react-vertical-timeline-component';
 
-// import CanvasJSReact from '../../assets/canvasjs.react.js';
+import CanvasJSReact from '../../assets/canvasjs.react.js';
 
 import databaseMock from '../../database/databaseMock.json';
 
@@ -156,7 +156,7 @@ const useStyles = makeStyles((theme: Theme) =>
 const Dashboard: React.FC = () => {
   const classes = useStyles();
 
-  // const { CanvasJSChart } = CanvasJSReact;
+  const { CanvasJSChart } = CanvasJSReact;
 
   const [Activities, setActivities] = useState<IActivity[]>([]);
   const [search, setSearch] = useState('');
@@ -389,13 +389,6 @@ const Dashboard: React.FC = () => {
                 <Grid item sm={6} xs={12}>
                   <CreditLimitContainer>
                     <h3>Limite de crédito</h3>
-                    {/* <CreditGranted>
-                      <button type="button" />
-                      <div>
-                        <strong>Concedido</strong>
-                        <p>R$ 12.000,20</p>
-                      </div>
-                    </CreditGranted> */}
                     <CreditGranted>
                       <ButtonSpanStrong
                         buttonColor="#4169e1"
@@ -428,7 +421,7 @@ const Dashboard: React.FC = () => {
                 <Grid item sm={6} xs={12}>
                   <SalesContainer>
                     <h3>Vendas</h3>
-                    {/* <CanvasJSChart options={databaseMock.SalesGraphic} /> */}
+                    <CanvasJSChart options={databaseMock.SalesGraphic} />
                   </SalesContainer>
                 </Grid>
                 <Grid item sm={6} xs={12}>
