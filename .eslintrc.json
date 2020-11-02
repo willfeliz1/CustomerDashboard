@@ -37,6 +37,7 @@
       "no-unused-expressions": "off",
       "import/no-duplicates": "off",
       "no-use-before-define": "off",
+      "react/jsx-one-expression-per-line": "off",
       "import/extensions": [
         "error",
         "ignorePackages",
