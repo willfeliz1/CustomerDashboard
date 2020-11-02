@@ -106,7 +106,6 @@ const DrawerMenu: React.FC = () => {
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
-        style={{ background: ' rgb(60, 60, 60)' }}
         position="fixed"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
