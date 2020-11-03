@@ -120,7 +120,7 @@
       "type":"ligacao",
       "activity":"Ligar para o diretor de marketing",
       "local":"Skype",
-      "name":"Carlos Zurick",
+      "name":"Carlos Mar",
       "state": "prevista"
     },
     {
@@ -144,7 +144,7 @@
       "type":"almoco",
       "activity":"Almoço corporativo",
       "local":"Kery Grill",
-      "name":"Equipe desenvolvimento WS",
+      "name":"Equipe desenvolvimento",
       "state": "atrasado"
     },
     {
@@ -152,7 +152,7 @@
       "type":"ligacao",
       "activity":"Ligação sobre novos contratos",
       "local":"Skype",
-      "name":"Dylan Watsor",
+      "name":"Watson Zyker",
       "state": "atrasado"
     }
   ]

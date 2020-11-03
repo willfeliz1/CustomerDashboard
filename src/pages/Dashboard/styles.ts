@@ -157,6 +157,11 @@ export const EmployerSocialMedia = styled.div`
 
   svg {
     margin-right: 35px;
+    color: #7f7f7f;
+
+    :hover {
+      color: #000;
+    }
   }
 `;
 
