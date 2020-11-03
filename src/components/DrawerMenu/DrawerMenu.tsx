@@ -19,21 +19,13 @@ import {
   Typography,
 } from '@material-ui/core';
 
-import {
-  FiChevronLeft,
-  FiChevronRight,
-  FiInbox,
-  FiMail,
-  FiMenu,
-} from 'react-icons/fi';
+import { FiChevronLeft, FiChevronRight, FiInbox, FiMenu } from 'react-icons/fi';
 import {
   AttachMoney,
-  Business,
   BusinessCenter,
   Dashboard,
   Event,
   LocalAtm,
-  MonetizationOn,
   PermIdentity,
   TrendingUp,
 } from '@material-ui/icons';

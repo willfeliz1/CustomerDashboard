@@ -17,4 +17,5 @@ export const Button = styled.button<IButtonColor>`
   margin-right: 10px;
   color: #fff;
   background: ${(props) => props.buttonColor};
+  cursor: default;
 `;
