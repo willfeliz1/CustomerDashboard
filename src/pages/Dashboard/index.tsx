@@ -31,7 +31,7 @@ import CanvasJSReact from '../../assets/canvasjs.react.js';
 
 import databaseMock from '../../database/databaseMock.json';
 
-import DrawerMenu from '../../components/DrawerMenu';
+import DrawerMenu from '../../components/DrawerMenu/DrawerMenu';
 
 import {
   Container,
@@ -74,8 +74,8 @@ import {
   AvatarInput,
 } from './styles';
 
-import LeafletMap from '../../components/LeafletMap';
-import ButtonSpanStrong from '../../components/ButtonSpanStrong';
+import LeafletMap from '../../components/LeafletMap/LeafletMap';
+import ButtonSpanStrong from '../../components/ButtonSpanStrong/ButtonSpanStrong';
 import formatValue from '../../utils/formatValue';
 
 interface IActivity {
