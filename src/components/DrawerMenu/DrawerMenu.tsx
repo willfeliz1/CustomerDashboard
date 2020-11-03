@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import clsx from 'clsx';
 
 import {
@@ -26,6 +26,17 @@ import {
   FiMail,
   FiMenu,
 } from 'react-icons/fi';
+import {
+  AttachMoney,
+  Business,
+  BusinessCenter,
+  Dashboard,
+  Event,
+  LocalAtm,
+  MonetizationOn,
+  PermIdentity,
+  TrendingUp,
+} from '@material-ui/icons';
 
 const drawerWidth = 200;
 
@@ -102,6 +113,28 @@ const DrawerMenu: React.FC = () => {
     setOpen(false);
   };
 
+  const handleAddIcon = useCallback((iconName: string) => {
+    switch (iconName) {
+      case 'Dashboard':
+        return <Dashboard />;
+      case 'Perfil':
+        return <PermIdentity />;
+      case 'Calendário':
+        return <Event />;
+      case 'Vendas':
+        return <TrendingUp />;
+      case 'Oportunidades':
+        return <BusinessCenter />;
+      case 'Limites':
+        return <AttachMoney />;
+      case 'Títulos':
+        return <LocalAtm />;
+
+      default:
+        return <FiInbox />;
+    }
+  }, []);
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -150,22 +183,17 @@ const DrawerMenu: React.FC = () => {
         </div>
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+          {[
+            'Dashboard',
+            'Perfil',
+            'Calendário',
+            'Vendas',
+            'Oportunidades',
+            'Limites',
+            'Títulos',
+          ].map((text, index) => (
             <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <FiInbox /> : <FiMail />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <FiInbox /> : <FiMail />}
-              </ListItemIcon>
+              <ListItemIcon>{handleAddIcon(text)}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
           ))}
