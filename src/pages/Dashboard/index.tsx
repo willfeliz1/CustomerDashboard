@@ -6,7 +6,7 @@ import { Element } from 'react-scroll';
 
 import { createStyles, Grid, makeStyles, Theme } from '@material-ui/core';
 
-import { FiInfo, FiMail, FiPhone } from 'react-icons/fi';
+import { FiMail, FiPhone } from 'react-icons/fi';
 import {
   WhatsApp,
   Facebook,
@@ -77,6 +77,7 @@ import {
 import LeafletMap from '../../components/LeafletMap/LeafletMap';
 import ButtonSpanStrong from '../../components/ButtonSpanStrong/ButtonSpanStrong';
 import formatValue from '../../utils/formatValue';
+import TransitionTooltip from '../../components/TransitionTooltip/TransitionTooltip';
 
 interface IActivity {
   date: string;
@@ -152,6 +153,10 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   }),
 );
+
+const OpportunityInfo = `Aliquam eget finibus ante, non facilisis lectus. Sed vitae dignissim est, vel aliquam tellus.
+Praesent non nunc mollis, fermentum neque at, semper arcu.
+Nullam eget est sed sem iaculis gravida eget vitae justo.`;
 
 const Dashboard: React.FC = () => {
   const classes = useStyles();
@@ -327,7 +332,8 @@ const Dashboard: React.FC = () => {
                       <div>
                         <h3>Oportunidades</h3>
                       </div>
-                      <FiInfo />
+
+                      <TransitionTooltip texto={OpportunityInfo} />
                     </OpportunityHeader>
 
                     <ProfitLossOpportunity>

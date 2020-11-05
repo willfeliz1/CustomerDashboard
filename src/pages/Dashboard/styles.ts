@@ -157,11 +157,6 @@ export const EmployerSocialMedia = styled.div`
 
   svg {
     margin-right: 35px;
-    color: #7f7f7f;
-
-    :hover {
-      color: #000;
-    }
   }
 `;
 
@@ -198,10 +193,6 @@ export const AdressDescription = styled.div`
   }
 `;
 
-// export const LocationMap = styled.div`
-//   height: 180px;
-// `;
-
 export const OpportunitiesContainer = styled.section`
   min-width: 300;
   padding: 15px 20px;
@@ -221,10 +212,20 @@ export const OpportunityHeader = styled.div`
   display: flex;
   margin-bottom: 25px;
 
-  > div {
+  div {
     display: flex;
-    flex: 1;
+    width: 100%;
     justify-content: center;
+  }
+
+  div + div {
+    width: 20px;
+  }
+
+  svg {
+    :hover {
+      color: #808080;
+    }
   }
 `;
 
