@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import px2vw from '../utils/px2vw';
+import 'react-vertical-timeline-component/style.min.css';
 
 export default createGlobalStyle`
   * {

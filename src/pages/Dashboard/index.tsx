@@ -427,6 +427,7 @@ const Dashboard: React.FC = () => {
                 <Grid item sm={6} xs={12}>
                   <SalesContainer>
                     <h3>Vendas</h3>
+
                     <CanvasJSChart options={databaseMock.SalesGraphic} />
                   </SalesContainer>
                 </Grid>
