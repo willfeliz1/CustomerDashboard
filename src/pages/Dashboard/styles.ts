@@ -33,6 +33,7 @@ export const CardClient = styled.div`
   padding: 15px 20px;
   align-items: flex-start;
   background: #fff;
+  border-radius: 5px;
 
   box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
@@ -56,14 +57,6 @@ export const EmployerName = styled.div`
     display: flex;
     flex-direction: column;
     margin: 0px 10px 5px 0px;
-
-    strong {
-      font-size: 17px;
-    }
-
-    p {
-      font-size: 14px;
-    }
   }
 `;
 
@@ -117,14 +110,6 @@ export const EmployerPhone = styled.div`
     display: flex;
     flex-direction: column;
     padding: 0px 10px;
-
-    span {
-      font-size: 15px;
-    }
-
-    p {
-      font-size: 14px;
-    }
   }
 `;
 
@@ -142,10 +127,6 @@ export const EmployerMail = styled.div`
     display: flex;
     flex-direction: column;
     padding: 0px 10px;
-
-    p {
-      font-size: 14px;
-    }
   }
 `;
 
@@ -188,6 +169,7 @@ export const AdressDescription = styled.div`
   justify-content: center;
   width: 100%;
   margin-top: 10px;
+
   strong {
     padding-top: 3px;
   }
@@ -302,7 +284,7 @@ export const MoreOpportunities = styled.div`
 
 export const CreditLimitContainer = styled.section`
   display: flex;
-  min-width: 300px;
+  min-width: 300;
   height: 100%;
   flex-direction: column;
   padding: 15px 20px;
@@ -352,13 +334,13 @@ export const CreditAvailable = styled.div`
 
 export const SalesContainer = styled.section`
   display: flex;
-  min-width: 300px;
-  height: 300px;
   flex-direction: column;
+  min-width: 300;
+  height: 320px;
   padding: 15px 20px;
-  border-radius: 5px;
-  background: #fff;
   align-items: flex-start;
+  background: #fff;
+  border-radius: 5px;
 
   box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
@@ -377,7 +359,7 @@ export const SalesGraphic = styled.div``;
 
 export const FinancialSecurityContainer = styled.section`
   display: flex;
-  min-width: 300px;
+  min-width: 300;
   height: 100%;
   flex-direction: column;
   padding: 15px 20px;
