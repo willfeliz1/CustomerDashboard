@@ -42,10 +42,10 @@
   "CreditLimit": {
     "idBeneficiary": 12312312312,
     "creditGranted": {
-      "valueTotal": 120002
+      "valueTotal": 310500
     },
     "creditAvailable": {
-      "valueTotal": 310500
+      "valueTotal": 120002
     }
   },
   "financialSecurity": {
@@ -62,58 +62,50 @@
       "valueTotal": 3105
     }
   },
-  "SalesGraphic" :{
-    "animationEnabled": true,
-    "title":{
-      "text": "Novas vendas por mês"
-    },
-    "axisY" : {
-      "title": "Número de vendas",
-      "includeZero": false
-    },
-    "toolTip": {
-      "shared": true
-    },
-    "data": [{
-      "type": "spline",
-      "name": "2019",
-      "showInLegend": true,
-      "dataPoints": [
-        { "y": 155, "label": "Jan" },
-        { "y": 150, "label": "Fev" },
-        { "y": 152, "label": "Mar" },
-        { "y": 148, "label": "Abr" },
-        { "y": 142, "label": "Mai" },
-        { "y": 150, "label": "Jun" },
-        { "y": 146, "label": "Jul" },
-        { "y": 149, "label": "Ago" },
-        { "y": 153, "label": "Set" },
-        { "y": 158, "label": "Out" },
-        { "y": 154, "label": "Nov" },
-        { "y": 150, "label": "Dez" }
-      ]
+  "Sales" :[
+    {
+      "id": 1,
+      "type": "Sale",
+      "quantity": 2,
+      "Value": 20000
     },
     {
-      "type": "spline",
-      "name": "2020",
-      "showInLegend": true,
-      "dataPoints": [
-        { "y": 172, "label": "Jan" },
-        { "y": 173, "label": "Fev" },
-        { "y": 175, "label": "Mar" },
-        { "y": 172, "label": "Abr" },
-        { "y": 162, "label": "Mai" },
-        { "y": 165, "label": "Jun" },
-        { "y": 172, "label": "Jul" },
-        { "y": 168, "label": "Ago" },
-        { "y": 175, "label": "Set" },
-        { "y": 170, "label": "Out" },
-        { "y": 165, "label": "Nov" },
-        { "y": 178, "label": "Dez" }
-      ]
-    }]
-  },
-
+      "id": 2,
+      "type": "Sale",
+      "quantity": 5,
+      "Value": 1000
+    },
+    {
+      "id": 3,
+      "type": "Sale",
+      "quantity": 1,
+      "Value": 40000
+    },
+    {
+      "id": 4,
+      "type": "WarrantySale",
+      "quantity": 2,
+      "Value": 20000
+    },
+    {
+      "id": 5,
+      "type": "WarrantySale",
+      "quantity": 3,
+      "Value": 20000
+    },
+    {
+      "id": 6,
+      "type": "CanceledSale",
+      "quantity": 1,
+      "Value": 1000
+    },
+    {
+      "id": 7,
+      "type": "DeferredSale",
+      "quantity": 1,
+      "Value": 3000
+    }
+  ],
   "TimelineActivities":[
     {
       "date":"15/10/2020 15:30",
