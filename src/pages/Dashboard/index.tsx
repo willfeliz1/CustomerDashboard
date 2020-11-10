@@ -27,7 +27,7 @@ import { Link } from 'react-router-dom';
 
 import { VerticalTimelineElement } from 'react-vertical-timeline-component';
 
-import CanvasJSReact from '../../assets/canvasjs.react.js';
+import { Pie } from 'react-chartjs-2';
 
 import databaseMock from '../../database/databaseMock.json';
 
@@ -78,6 +78,7 @@ import LeafletMap from '../../components/LeafletMap/LeafletMap';
 import ButtonSpanStrong from '../../components/ButtonSpanStrong/ButtonSpanStrong';
 import formatValue from '../../utils/formatValue';
 import TransitionTooltip from '../../components/TransitionTooltip/TransitionTooltip';
+import Chart from '../../components/Chart/Chart';
 
 interface IActivity {
   date: string;
@@ -144,6 +145,13 @@ interface IFinancialSecurity {
   };
 }
 
+interface ISales {
+  id: number;
+  type: string;
+  quantity: number;
+  Value: number;
+}
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     toolbar: {
@@ -161,8 +169,6 @@ Nullam eget est sed sem iaculis gravida eget vitae justo.`;
 const Dashboard: React.FC = () => {
   const classes = useStyles();
 
-  const { CanvasJSChart } = CanvasJSReact;
-
   const [Activities, setActivities] = useState<IActivity[]>([]);
   const [search, setSearch] = useState('');
   const [filteredActivities, setFilteredActivities] = useState<IActivity[]>([]);
@@ -173,6 +179,7 @@ const Dashboard: React.FC = () => {
   const [financialSecurities, setFinancialSecurities] = useState<
     IFinancialSecurity
   >();
+  const [sales, setSales] = useState<ISales[]>([]);
 
   useEffect(() => {
     setActivities(databaseMock.TimelineActivities);
@@ -180,6 +187,7 @@ const Dashboard: React.FC = () => {
     setOpportunities(databaseMock.Opportunities);
     setCreditLimites(databaseMock.CreditLimit);
     setFinancialSecurities(databaseMock.financialSecurity);
+    setSales(databaseMock.Sales);
   }, []);
 
   function filterByActivity() {
@@ -254,6 +262,64 @@ const Dashboard: React.FC = () => {
       console.log(e.target.files);
     }
   }, []);
+
+  const getSaleValues = useCallback(() => {
+    const sale = sales
+      .filter((state) => state.type === 'Sale')
+      .map((saleState) => {
+        return saleState.Value * saleState.quantity;
+      });
+
+    const warrantySale = sales
+      .filter((state) => state.type === 'WarrantySale')
+      .map((saleState) => {
+        return saleState.Value * saleState.quantity;
+      });
+
+    const canceledSale = sales
+      .filter((state) => state.type === 'CanceledSale')
+      .map((saleState) => {
+        return saleState.Value * saleState.quantity;
+      });
+
+    const deferredSale = sales
+      .filter((state) => state.type === 'DeferredSale')
+      .map((saleState) => {
+        return saleState.Value * saleState.quantity;
+      });
+
+    const a = [1, 2, 3, 4];
+
+    return a;
+  }, [sales]);
+
+  const data = {
+    labels: [
+      'Vendas sem garantia',
+      'Vendas com garantia',
+      'Vendas canceladas',
+      'Vendas diferidas',
+    ],
+    datasets: [
+      {
+        label: '# of Votes',
+        data: getSaleValues(),
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+        ],
+        borderWidth: 1,
+      },
+    ],
+  };
 
   return (
     <Container>
@@ -428,7 +494,7 @@ const Dashboard: React.FC = () => {
                   <SalesContainer>
                     <h3>Vendas</h3>
 
-                    <CanvasJSChart options={databaseMock.SalesGraphic} />
+                    <Chart data={data} />
                   </SalesContainer>
                 </Grid>
                 <Grid item sm={6} xs={12}>
