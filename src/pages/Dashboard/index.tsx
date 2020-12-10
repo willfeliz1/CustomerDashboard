@@ -263,39 +263,74 @@ const Dashboard: React.FC = () => {
     }
   }, []);
 
+  const groupSaleValues = useCallback((array: Array<number>) => {
+    return array.reduce((acc, current) => acc + current, 0);
+  }, []);
+
+  const formatter = new Intl.NumberFormat('en-US', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
+
   const getSaleValues = useCallback(() => {
-    const sale = sales
-      .filter((state) => state.type === 'Sale')
-      .map((saleState) => {
-        return saleState.Value * saleState.quantity;
-      });
+    const sale = Number(
+      formatter.format(
+        groupSaleValues(
+          sales
+            .filter((state) => state.type === 'Sale')
+            .map((saleState) => {
+              return saleState.Value * saleState.quantity;
+            }),
+        ),
+      ),
+    );
 
-    const warrantySale = sales
-      .filter((state) => state.type === 'WarrantySale')
-      .map((saleState) => {
-        return saleState.Value * saleState.quantity;
-      });
+    const warrantySale = Number(
+      formatter.format(
+        groupSaleValues(
+          sales
+            .filter((state) => state.type === 'WarrantySale')
+            .map((saleState) => {
+              return saleState.Value * saleState.quantity;
+            }),
+        ),
+      ),
+    );
 
-    const canceledSale = sales
-      .filter((state) => state.type === 'CanceledSale')
-      .map((saleState) => {
-        return saleState.Value * saleState.quantity;
-      });
+    const canceledSale = Number(
+      formatter.format(
+        groupSaleValues(
+          sales
+            .filter((state) => state.type === 'CanceledSale')
+            .map((saleState) => {
+              return saleState.Value * saleState.quantity;
+            }),
+        ),
+      ),
+    );
 
-    const deferredSale = sales
-      .filter((state) => state.type === 'DeferredSale')
-      .map((saleState) => {
-        return saleState.Value * saleState.quantity;
-      });
+    const deferredSale = Number(
+      formatter.format(
+        groupSaleValues(
+          sales
+            .filter((state) => state.type === 'DeferredSale')
+            .map((saleState) => {
+              return saleState.Value * saleState.quantity;
+            }),
+        ),
+      ),
+    );
 
-    const a = [1, 2, 3, 4];
+    const salesAmount = [];
 
-    return a;
+    salesAmount.push(sale, warrantySale, canceledSale, deferredSale);
+
+    return salesAmount;
   }, [sales]);
 
   const data = {
     labels: [
-      'Vendas sem garantia',
+      'Vendas',
       'Vendas com garantia',
       'Vendas canceladas',
       'Vendas diferidas',
