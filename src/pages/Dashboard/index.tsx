@@ -27,7 +27,7 @@ import { Link } from 'react-router-dom';
 
 import { VerticalTimelineElement } from 'react-vertical-timeline-component';
 
-import { Pie } from 'react-chartjs-2';
+// import { Pie } from 'react-chartjs-2';
 
 import databaseMock from '../../database/databaseMock.json';
 
@@ -76,9 +76,10 @@ import {
 
 import LeafletMap from '../../components/LeafletMap/LeafletMap';
 import ButtonSpanStrong from '../../components/ButtonSpanStrong/ButtonSpanStrong';
-import formatValue from '../../utils/formatValue';
 import TransitionTooltip from '../../components/TransitionTooltip/TransitionTooltip';
-import Chart from '../../components/Chart/Chart';
+import LineChart from '../../components/Charts/LineChart';
+import decimalFormat from '../../utils/decimalFormat';
+import coinFormat from '../../utils/coinFormat';
 
 interface IActivity {
   date: string;
@@ -274,7 +275,7 @@ const Dashboard: React.FC = () => {
 
   const getSaleValues = useCallback(() => {
     const sale = Number(
-      formatter.format(
+      decimalFormat(
         groupSaleValues(
           sales
             .filter((state) => state.type === 'Sale')
@@ -329,15 +330,10 @@ const Dashboard: React.FC = () => {
   }, [sales]);
 
   const data = {
-    labels: [
-      'Vendas',
-      'Vendas com garantia',
-      'Vendas canceladas',
-      'Vendas diferidas',
-    ],
+    labels: ['normais', 'garantia extendida', 'canceladas', 'diferidas'],
     datasets: [
       {
-        label: '# of Votes',
+        label: 'Valor das vendas',
         data: getSaleValues(),
         backgroundColor: [
           'rgba(255, 99, 132, 0.2)',
@@ -351,9 +347,24 @@ const Dashboard: React.FC = () => {
           'rgba(255, 206, 86, 1)',
           'rgba(75, 192, 192, 1)',
         ],
-        borderWidth: 1,
+        borderWidth: 1.5,
       },
     ],
+  };
+
+  const options = {
+    scales: {
+      yAxes: [
+        {
+          ticks: {
+            // Include a dollar sign in the ticks
+            callback(value: number, index: any, values: any) {
+              return `R$${value}`;
+            },
+          },
+        },
+      ],
+    },
   };
 
   return (
@@ -444,7 +455,7 @@ const Dashboard: React.FC = () => {
                         title="Ganhas"
                         description={String(
                           opportunities?.profits.valueTotal &&
-                            formatValue(opportunities?.profits.valueTotal),
+                            coinFormat(opportunities?.profits.valueTotal),
                         )}
                       />
                       <LossOpportunity>
@@ -454,7 +465,7 @@ const Dashboard: React.FC = () => {
                           title="Perdas"
                           description={String(
                             opportunities?.loss.valueTotal &&
-                              formatValue(opportunities?.loss.valueTotal),
+                              coinFormat(opportunities?.loss.valueTotal),
                           )}
                         />
                       </LossOpportunity>
@@ -468,7 +479,7 @@ const Dashboard: React.FC = () => {
                           title="Abertos"
                           description={String(
                             opportunities?.open.valueTotal &&
-                              formatValue(opportunities?.open.valueTotal),
+                              coinFormat(opportunities?.open.valueTotal),
                           )}
                         />
                       </OpenOpportunity>
@@ -479,7 +490,7 @@ const Dashboard: React.FC = () => {
                           title="Descartadas"
                           description={String(
                             opportunities?.discard.valueTotal &&
-                              formatValue(opportunities?.discard.valueTotal),
+                              coinFormat(opportunities?.discard.valueTotal),
                           )}
                         />
                       </DiscardOpportunity>
@@ -502,9 +513,7 @@ const Dashboard: React.FC = () => {
                         title="Concedido"
                         description={String(
                           creditLimities?.creditGranted.valueTotal &&
-                            formatValue(
-                              creditLimities.creditGranted.valueTotal,
-                            ),
+                            coinFormat(creditLimities.creditGranted.valueTotal),
                         )}
                       />
                     </CreditGranted>
@@ -515,7 +524,7 @@ const Dashboard: React.FC = () => {
                         title="Disponivel"
                         description={String(
                           creditLimities?.creditAvailable.valueTotal &&
-                            formatValue(
+                            coinFormat(
                               creditLimities.creditAvailable.valueTotal,
                             ),
                         )}
@@ -529,7 +538,7 @@ const Dashboard: React.FC = () => {
                   <SalesContainer>
                     <h3>Vendas</h3>
 
-                    <Chart data={data} />
+                    <LineChart data={data} options={options} />
                   </SalesContainer>
                 </Grid>
                 <Grid item sm={6} xs={12}>
@@ -542,9 +551,7 @@ const Dashboard: React.FC = () => {
                         buttonText={financialSecurities?.expired.quantityTotal}
                         title={String(
                           financialSecurities?.expired.valueTotal &&
-                            formatValue(
-                              financialSecurities?.expired.valueTotal,
-                            ),
+                            coinFormat(financialSecurities?.expired.valueTotal),
                         )}
                         description="Vencidos"
                       />
@@ -557,7 +564,7 @@ const Dashboard: React.FC = () => {
                         }
                         title={String(
                           financialSecurities?.financesToExpire.valueTotal &&
-                            formatValue(
+                            coinFormat(
                               financialSecurities?.financesToExpire.valueTotal,
                             ),
                         )}
@@ -570,7 +577,7 @@ const Dashboard: React.FC = () => {
                         buttonText={financialSecurities?.paid.quantityTotal}
                         title={String(
                           financialSecurities?.paid.valueTotal &&
-                            formatValue(financialSecurities?.paid.valueTotal),
+                            coinFormat(financialSecurities?.paid.valueTotal),
                         )}
                         description="Pagos"
                       />
