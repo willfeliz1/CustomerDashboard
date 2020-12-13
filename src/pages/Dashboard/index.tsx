@@ -77,8 +77,7 @@ import {
 import LeafletMap from '../../components/LeafletMap/LeafletMap';
 import ButtonSpanStrong from '../../components/ButtonSpanStrong/ButtonSpanStrong';
 import TransitionTooltip from '../../components/TransitionTooltip/TransitionTooltip';
-import LineChart from '../../components/Charts/LineChart';
-import decimalFormat from '../../utils/decimalFormat';
+import BarChart from '../../components/Charts/BarChart';
 import coinFormat from '../../utils/coinFormat';
 
 interface IActivity {
@@ -265,62 +264,47 @@ const Dashboard: React.FC = () => {
   }, []);
 
   const groupSaleValues = useCallback((array: Array<number>) => {
-    return array.reduce((acc, current) => acc + current, 0);
-  }, []);
+    const Total = array.reduce((acc, current) => acc + current, 0);
 
-  const formatter = new Intl.NumberFormat('en-US', {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  });
+    return Math.floor(Total * 100) / 100;
+  }, []);
 
   const getSaleValues = useCallback(() => {
     const sale = Number(
-      decimalFormat(
-        groupSaleValues(
-          sales
-            .filter((state) => state.type === 'Sale')
-            .map((saleState) => {
-              return saleState.Value * saleState.quantity;
-            }),
-        ),
+      groupSaleValues(
+        sales
+          .filter((state) => state.type === 'Sale')
+          .map((saleState) => {
+            return saleState.Value * saleState.quantity;
+          }),
       ),
     );
 
-    const warrantySale = Number(
-      formatter.format(
-        groupSaleValues(
-          sales
-            .filter((state) => state.type === 'WarrantySale')
-            .map((saleState) => {
-              return saleState.Value * saleState.quantity;
-            }),
-        ),
-      ),
+    const warrantySale = groupSaleValues(
+      sales
+        .filter((state) => state.type === 'WarrantySale')
+        .map((saleState) => {
+          return saleState.Value * saleState.quantity;
+        }),
     );
 
-    const canceledSale = Number(
-      formatter.format(
-        groupSaleValues(
-          sales
-            .filter((state) => state.type === 'CanceledSale')
-            .map((saleState) => {
-              return saleState.Value * saleState.quantity;
-            }),
-        ),
-      ),
+    const canceledSale = groupSaleValues(
+      sales
+        .filter((state) => state.type === 'CanceledSale')
+        .map((saleState) => {
+          return saleState.Value * saleState.quantity;
+        }),
     );
 
-    const deferredSale = Number(
-      formatter.format(
-        groupSaleValues(
-          sales
-            .filter((state) => state.type === 'DeferredSale')
-            .map((saleState) => {
-              return saleState.Value * saleState.quantity;
-            }),
-        ),
-      ),
+    const deferredSale = groupSaleValues(
+      sales
+        .filter((state) => state.type === 'DeferredSale')
+        .map((saleState) => {
+          return saleState.Value * saleState.quantity;
+        }),
     );
+
+    console.log(deferredSale);
 
     const salesAmount = [];
 
@@ -330,23 +314,18 @@ const Dashboard: React.FC = () => {
   }, [sales]);
 
   const data = {
-    labels: ['normais', 'garantia extendida', 'canceladas', 'diferidas'],
+    labels: ['normais', 'garantias', 'canceladas', 'diferidas'],
     datasets: [
       {
         label: 'Valor das vendas',
         data: getSaleValues(),
         backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
+          'rgba(93, 255, 72, 0.219)',
           'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
+          'rgba(255, 92, 86, 0.2)',
+          'rgba(245, 180, 82, 0.2)',
         ],
-        borderColor: [
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-        ],
+        borderColor: ['#94ff63', 'rgba(54, 162, 235, 1)', '#ff5656', '#ebb236'],
         borderWidth: 1.5,
       },
     ],
@@ -361,7 +340,9 @@ const Dashboard: React.FC = () => {
             callback(value: number, index: any, values: any) {
               return `R$${value}`;
             },
+            suggestedMin: 0,
           },
+          stacked: true,
         },
       ],
     },
@@ -538,7 +519,7 @@ const Dashboard: React.FC = () => {
                   <SalesContainer>
                     <h3>Vendas</h3>
 
-                    <LineChart data={data} options={options} />
+                    <BarChart data={data} options={options} />
                   </SalesContainer>
                 </Grid>
                 <Grid item sm={6} xs={12}>
