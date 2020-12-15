@@ -27,8 +27,10 @@ import {
   Event,
   LocalAtm,
   PermIdentity,
+  Search,
   TrendingUp,
 } from '@material-ui/icons';
+import { Link, useHistory } from 'react-router-dom';
 
 const drawerWidth = 200;
 
@@ -95,7 +97,9 @@ const useStyles = makeStyles((theme: Theme) =>
 const DrawerMenu: React.FC = () => {
   const classes = useStyles();
   const theme = useTheme();
+  const history = useHistory();
   const [open, setOpen] = React.useState(false);
+  const [selectedIndex, setSelectedIndex] = React.useState(1);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -107,16 +111,16 @@ const DrawerMenu: React.FC = () => {
 
   const handleAddIcon = useCallback((iconName: string) => {
     switch (iconName) {
-      case 'Dashboard':
-        return <Dashboard />;
+      case 'Procurar':
+        return <Search />;
       case 'Perfil':
         return <PermIdentity />;
+      case 'Oportunidades':
+        return <BusinessCenter />;
       case 'Calendário':
         return <Event />;
       case 'Vendas':
         return <TrendingUp />;
-      case 'Oportunidades':
-        return <BusinessCenter />;
       case 'Limites':
         return <AttachMoney />;
       case 'Títulos':
@@ -124,6 +128,33 @@ const DrawerMenu: React.FC = () => {
 
       default:
         return <FiInbox />;
+    }
+  }, []);
+
+  const handleListItemClick = (
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    index: number,
+  ) => {
+    setSelectedIndex(index);
+
+    switch (index) {
+      case 1:
+        return history.push('/profile');
+      case 2:
+        return history.push('/opportunities');
+
+      default:
+        break;
+    }
+  };
+
+  const handleChangePageSelected = useCallback((index: number) => {
+    console.log(index);
+    switch (index) {
+      case 1:
+        return console.log('teste');
+      default:
+        break;
     }
   }, []);
 
@@ -149,7 +180,7 @@ const DrawerMenu: React.FC = () => {
             <FiMenu />
 
             <Typography variant="h6" noWrap style={{ paddingLeft: 45 }}>
-              Relatório do cliente
+              Dashboard
             </Typography>
           </IconButton>
         </Toolbar>
@@ -176,15 +207,21 @@ const DrawerMenu: React.FC = () => {
         <Divider />
         <List>
           {[
-            'Dashboard',
+            'Procurar',
             'Perfil',
+            'Oportunidades',
             'Calendário',
             'Vendas',
-            'Oportunidades',
             'Limites',
             'Títulos',
           ].map((text, index) => (
-            <ListItem button key={text}>
+            <ListItem
+              button
+              key={text}
+              selected={selectedIndex === index}
+              onClick={(e) => handleListItemClick(e, index)}
+              onChange={() => handleChangePageSelected(index)}
+            >
               <ListItemIcon>{handleAddIcon(text)}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
