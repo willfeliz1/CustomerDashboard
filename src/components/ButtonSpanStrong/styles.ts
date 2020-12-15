@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import px2vw from '../../utils/px2vw';
 
 interface IButtonColor {
   buttonColor: string;
@@ -18,4 +19,11 @@ export const Button = styled.button<IButtonColor>`
   color: #fff;
   background: ${(props) => props.buttonColor};
   cursor: default;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+
+  @media (max-width: 1400px) {
+    width: ${px2vw(50)};
+    height: ${px2vw(50)};
+  }
 `;
