@@ -217,65 +217,9 @@ export const ProfitLossOpportunity = styled.section`
   margin-bottom: 25px;
 `;
 
-export const ProfitOpportunity = styled.div`
-  display: flex;
-
-  button {
-    width: 40px;
-    height: 40px;
-    border: 0;
-    border-radius: 5px;
-    margin-right: 10px;
-    background-color: #008000;
-    color: #fff;
-  }
-`;
-
-export const LossOpportunity = styled.div`
-  display: flex;
-
-  button {
-    width: 40px;
-    height: 40px;
-    border: 0;
-    border-radius: 5px;
-    margin-right: 10px;
-    background-color: #ff0000;
-    color: #fff;
-  }
-`;
-
 export const OpenDiscardOpportunity = styled.section`
   display: flex;
   justify-content: space-between;
-`;
-
-export const OpenOpportunity = styled.div`
-  display: flex;
-
-  button {
-    width: 40px;
-    height: 40px;
-    border: 0;
-    border-radius: 5px;
-    margin-right: 10px;
-    background-color: #4169e1;
-    color: #fff;
-  }
-`;
-
-export const DiscardOpportunity = styled.div`
-  display: flex;
-
-  button {
-    width: 40px;
-    height: 40px;
-    border: 0;
-    border-radius: 5px;
-    margin-right: 10px;
-    background-color: #000;
-    color: #fff;
-  }
 `;
 
 export const MoreOpportunities = styled.div`

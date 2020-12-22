@@ -27,8 +27,6 @@ import { Link } from 'react-router-dom';
 
 import { VerticalTimelineElement } from 'react-vertical-timeline-component';
 
-// import { Pie } from 'react-chartjs-2';
-
 import databaseMock from '../../database/databaseMock.json';
 
 import DrawerMenu from '../../components/DrawerMenu/DrawerMenu';
@@ -49,10 +47,7 @@ import {
   OpportunitiesContainer,
   OpportunityHeader,
   ProfitLossOpportunity,
-  LossOpportunity,
   OpenDiscardOpportunity,
-  OpenOpportunity,
-  DiscardOpportunity,
   MoreOpportunities,
   CreditLimitContainer,
   CreditGranted,
@@ -79,6 +74,7 @@ import ButtonSpanStrong from '../../components/ButtonSpanStrong/ButtonSpanStrong
 import TransitionTooltip from '../../components/TransitionTooltip/TransitionTooltip';
 import BarChart from '../../components/Charts/BarChart';
 import coinFormat from '../../utils/coinFormat';
+import api from '../../services/api';
 
 interface IActivity {
   date: string;
@@ -97,7 +93,7 @@ interface IContact {
   contactType: string;
   job: string;
   status: string;
-  avatarUrl: string;
+  avatarUrl?: string;
 }
 
 interface IOpportunity {
@@ -166,7 +162,7 @@ const OpportunityInfo = `Aliquam eget finibus ante, non facilisis lectus. Sed vi
 Praesent non nunc mollis, fermentum neque at, semper arcu.
 Nullam eget est sed sem iaculis gravida eget vitae justo.`;
 
-const Dashboard: React.FC = () => {
+const Profile: React.FC = () => {
   const classes = useStyles();
 
   const [Activities, setActivities] = useState<IActivity[]>([]);
@@ -180,14 +176,51 @@ const Dashboard: React.FC = () => {
     IFinancialSecurity
   >();
   const [sales, setSales] = useState<ISales[]>([]);
+  const [photo, setPhoto] = useState();
+
+  // useEffect(() => {
+  //   setActivities(databaseMock.TimelineActivities);
+  //   setContact(databaseMock.User);
+  //   setOpportunities(databaseMock.Opportunities);
+  //   setCreditLimites(databaseMock.CreditLimit);
+  //   setFinancialSecurities(databaseMock.financialSecurity);
+  //   setSales(databaseMock.Sales);
+  // }, []);
 
   useEffect(() => {
-    setActivities(databaseMock.TimelineActivities);
-    setContact(databaseMock.User);
-    setOpportunities(databaseMock.Opportunities);
-    setCreditLimites(databaseMock.CreditLimit);
-    setFinancialSecurities(databaseMock.financialSecurity);
-    setSales(databaseMock.Sales);
+    api.get('User').then((response) => {
+      setContact(response.data);
+    });
+  }, []);
+
+  useEffect(() => {
+    api.get('Opportunities').then((response) => {
+      setOpportunities(response.data);
+    });
+  }, []);
+
+  useEffect(() => {
+    api.get('CreditLimit').then((response) => {
+      setCreditLimites(response.data);
+    });
+  }, []);
+
+  useEffect(() => {
+    api.get('Sales').then((response) => {
+      setSales(response.data);
+    });
+  }, []);
+
+  useEffect(() => {
+    api.get('financialSecurity').then((response) => {
+      setFinancialSecurities(response.data);
+    });
+  }, []);
+
+  useEffect(() => {
+    api.get('TimelineActivities').then((response) => {
+      setActivities(response.data);
+    });
   }, []);
 
   function filterByActivity() {
@@ -253,15 +286,19 @@ const Dashboard: React.FC = () => {
     [Activities],
   );
 
-  const handleAvatarChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      const data = new FormData();
+  // const handleAvatarChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+  //   if (e.target.files) {
+  //     const data = new FormData();
 
-      data.append('avatar', e.target.files[0]);
+  //     data.append('avatar', e.target.files[0]);
 
-      console.log(e.target.files);
-    }
-  }, []);
+  //     const teste = e.target.files[0];
+
+  //     // setContact({
+  //     //   avatarUrl: data.getAll('avatar'),
+  //     // });
+  //   }
+  // }, []);
 
   const groupSaleValues = useCallback((array: Array<number>) => {
     const Total = array.reduce((acc, current) => acc + current, 0);
@@ -303,8 +340,6 @@ const Dashboard: React.FC = () => {
           return saleState.Value * saleState.quantity;
         }),
     );
-
-    console.log(deferredSale);
 
     const salesAmount = [];
 
@@ -370,7 +405,8 @@ const Dashboard: React.FC = () => {
                           <input
                             type="file"
                             id="avatar"
-                            onChange={handleAvatarChange}
+                            // onChange={handleAvatarChange}
+                            // value={contact?.avatarUrl}
                           />
                         </label>
                       </AvatarInput>
@@ -439,46 +475,40 @@ const Dashboard: React.FC = () => {
                             coinFormat(opportunities?.profits.valueTotal),
                         )}
                       />
-                      <LossOpportunity>
-                        <ButtonSpanStrong
-                          buttonColor="#ff0000"
-                          buttonText={opportunities?.loss.quantityTotal}
-                          title="Perdas"
-                          description={String(
-                            opportunities?.loss.valueTotal &&
-                              coinFormat(opportunities?.loss.valueTotal),
-                          )}
-                        />
-                      </LossOpportunity>
+                      <ButtonSpanStrong
+                        buttonColor="#ff0000"
+                        buttonText={opportunities?.loss.quantityTotal}
+                        title="Perdas"
+                        description={String(
+                          opportunities?.loss.valueTotal &&
+                            coinFormat(opportunities?.loss.valueTotal),
+                        )}
+                      />
                     </ProfitLossOpportunity>
 
                     <OpenDiscardOpportunity>
-                      <OpenOpportunity>
-                        <ButtonSpanStrong
-                          buttonColor="#4169e1"
-                          buttonText={1}
-                          title="Abertos"
-                          description={String(
-                            opportunities?.open.valueTotal &&
-                              coinFormat(opportunities?.open.valueTotal),
-                          )}
-                        />
-                      </OpenOpportunity>
-                      <DiscardOpportunity>
-                        <ButtonSpanStrong
-                          buttonColor="#000"
-                          buttonText={1}
-                          title="Descartadas"
-                          description={String(
-                            opportunities?.discard.valueTotal &&
-                              coinFormat(opportunities?.discard.valueTotal),
-                          )}
-                        />
-                      </DiscardOpportunity>
+                      <ButtonSpanStrong
+                        buttonColor="#4169e1"
+                        buttonText={1}
+                        title="Abertos"
+                        description={String(
+                          opportunities?.open.valueTotal &&
+                            coinFormat(opportunities?.open.valueTotal),
+                        )}
+                      />
+                      <ButtonSpanStrong
+                        buttonColor="#000"
+                        buttonText={1}
+                        title="Descartadas"
+                        description={String(
+                          opportunities?.discard.valueTotal &&
+                            coinFormat(opportunities?.discard.valueTotal),
+                        )}
+                      />
                     </OpenDiscardOpportunity>
 
                     <MoreOpportunities>
-                      <Link to="/dashboard">
+                      <Link to="/">
                         <strong>Ver todas as oportunidades</strong>
                       </Link>
                     </MoreOpportunities>
@@ -686,4 +716,4 @@ const Dashboard: React.FC = () => {
   );
 };
 
-export default Dashboard;
+export default Profile;
