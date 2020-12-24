@@ -133,12 +133,8 @@ export const EmployerMail = styled.div`
 export const EmployerSocialMedia = styled.div`
   display: flex;
   margin-top: auto;
-  justify-content: left;
   width: 100%;
-
-  svg {
-    margin-right: 35px;
-  }
+  justify-content: space-between;
 `;
 
 export const CardLocal = styled.div`
@@ -279,10 +275,9 @@ export const CreditAvailable = styled.div`
 export const SalesContainer = styled.section`
   display: flex;
   flex-direction: column;
-  min-width: 300;
+  min-width: 200;
   height: 320px;
   padding: 15px 20px;
-  align-items: flex-start;
   background: #fff;
   border-radius: 5px;
 
