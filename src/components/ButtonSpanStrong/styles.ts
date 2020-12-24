@@ -8,6 +8,10 @@ interface IButtonColor {
 export const Container = styled.div`
   display: flex;
   min-width: 155px;
+
+  @media (max-width: 1400px) {
+    min-width: 130px;
+  }
 `;
 
 export const Button = styled.button<IButtonColor>`
