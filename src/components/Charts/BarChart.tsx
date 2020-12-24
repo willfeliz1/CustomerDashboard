@@ -19,7 +19,11 @@ interface IChart extends ChartComponentProps {
 }
 
 const BarChart: React.FC<IChart> = ({ data, options }: IChart) => {
-  return <Bar data={data} options={options} height={180} />;
+  return (
+    <div style={{ paddingRight: '25px' }}>
+      <Bar data={data} options={options} height={180} />
+    </div>
+  );
 };
 
 export default BarChart;
