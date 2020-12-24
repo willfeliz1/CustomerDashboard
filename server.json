@@ -1,0 +1,158 @@
+{
+  "User": {
+    "id": 1,
+    "name": "William Felizardo",
+    "cellphone": "44997548686",
+    "mail": "william_mfelizardo@hotmail.com",
+    "contactType": "trabalho",
+    "job": "Não possui",
+    "status": "Ativo",
+    "avatarUrl": "https://avatars2.githubusercontent.com/u/50719156?s=460&u=81ec30b299ffe9d9275b4e207d9c4760fcada87a&v=4",
+    "latLngLocalJob": {
+      "lat": -23.7599142,
+      "lng": -53.3032763
+    }
+  },
+  "Opportunities": {
+    "idUser": 1,
+
+    "profits": {
+      "quantityTotal": 4,
+      "valueTotal": 200000,
+      "moeda": "R$"
+    },
+    "loss": {
+      "quantityTotal": 1,
+      "valueTotal": 432200,
+      "moeda": "R$"
+    },
+    "open": {
+      "quantityTotal": 2,
+      "valueTotal": 20000,
+      "moeda": {
+        "real": "R$",
+        "dolar": "U$",
+        "euro": "€"
+      }
+    },
+    "discard": {
+      "quantityTotal": 0,
+      "valueTotal": 4000
+    }
+  },
+  "CreditLimit": {
+    "idBeneficiary": 12312312312,
+    "creditGranted": {
+      "valueTotal": 310500
+    },
+    "creditAvailable": {
+      "valueTotal": 120002
+    }
+  },
+  "financialSecurity": {
+    "expired": {
+      "quantityTotal": 1,
+      "valueTotal": 3105
+    },
+    "paid": {
+      "quantityTotal": 2,
+      "valueTotal": 3105
+    },
+    "financesToExpire": {
+      "quantityTotal": 2,
+      "valueTotal": 3105
+    }
+  },
+  "Sales" :[
+    {
+      "id": 1,
+      "type": "Sale",
+      "quantity": 2,
+      "Value": 1190.02
+    },
+    {
+      "id": 2,
+      "type": "Sale",
+      "quantity": 5,
+      "Value": 110.20
+    },
+    {
+      "id": 3,
+      "type": "Sale",
+      "quantity": 1,
+      "Value": 140.00
+    },
+    {
+      "id": 4,
+      "type": "WarrantySale",
+      "quantity": 2,
+      "Value": 120.02
+    },
+    {
+      "id": 5,
+      "type": "WarrantySale",
+      "quantity": 3,
+      "Value": 220.00
+    },
+    {
+      "id": 6,
+      "type": "CanceledSale",
+      "quantity": 1,
+      "Value": 200.24
+    },
+    {
+      "id": 7,
+      "type": "DeferredSale",
+      "quantity": 1,
+      "Value": 100.33
+    },
+    {
+      "id": 8,
+      "type": "DeferredSale",
+      "quantity": 1,
+      "Value": 103
+    }
+  ],
+  "TimelineActivities":[
+    {
+      "date":"15/10/2020 15:30",
+      "type":"ligacao",
+      "activity":"Ligar para o diretor de marketing",
+      "local":"Skype",
+      "name":"Carlos Mar",
+      "state": "prevista"
+    },
+    {
+      "date":"13/10/2020 17:30",
+      "type":"reuniao",
+      "activity":"Reunião de orçamento de custos",
+      "local":"Sala de reuniões 2",
+      "name":"Equipe de finanças",
+      "state": "andamento"
+    },
+    {
+      "date":"13/10/2020 10:00",
+      "type":"email",
+      "activity":"Email de orçamento",
+      "local":"Online",
+      "name":"Equipes de projetos e finanças",
+      "state": "concluida"
+    },
+    {
+      "date":"12/10/2020 11:30",
+      "type":"almoco",
+      "activity":"Almoço corporativo",
+      "local":"Kery Grill",
+      "name":"Equipe desenvolvimento",
+      "state": "atrasado"
+    },
+    {
+      "date":"11/10/2020 14:30",
+      "type":"ligacao",
+      "activity":"Ligação sobre novos contratos",
+      "local":"Skype",
+      "name":"Watson Zyker",
+      "state": "atrasado"
+    }
+  ]
+}
