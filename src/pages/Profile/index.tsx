@@ -176,16 +176,6 @@ const Profile: React.FC = () => {
     IFinancialSecurity
   >();
   const [sales, setSales] = useState<ISales[]>([]);
-  const [photo, setPhoto] = useState();
-
-  // useEffect(() => {
-  //   setActivities(databaseMock.TimelineActivities);
-  //   setContact(databaseMock.User);
-  //   setOpportunities(databaseMock.Opportunities);
-  //   setCreditLimites(databaseMock.CreditLimit);
-  //   setFinancialSecurities(databaseMock.financialSecurity);
-  //   setSales(databaseMock.Sales);
-  // }, []);
 
   useEffect(() => {
     api.get('User').then((response) => {
@@ -286,20 +276,6 @@ const Profile: React.FC = () => {
     [Activities],
   );
 
-  // const handleAvatarChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-  //   if (e.target.files) {
-  //     const data = new FormData();
-
-  //     data.append('avatar', e.target.files[0]);
-
-  //     const teste = e.target.files[0];
-
-  //     // setContact({
-  //     //   avatarUrl: data.getAll('avatar'),
-  //     // });
-  //   }
-  // }, []);
-
   const groupSaleValues = useCallback((array: Array<number>) => {
     const Total = array.reduce((acc, current) => acc + current, 0);
 
@@ -399,16 +375,6 @@ const Profile: React.FC = () => {
                     <EmployerName>
                       <AvatarInput>
                         <img src={contact?.avatarUrl} alt="imageGit" />
-                        <label htmlFor="avatar">
-                          <CameraAlt />
-
-                          <input
-                            type="file"
-                            id="avatar"
-                            // onChange={handleAvatarChange}
-                            // value={contact?.avatarUrl}
-                          />
-                        </label>
                       </AvatarInput>
 
                       <div>

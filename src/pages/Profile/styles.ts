@@ -1,6 +1,7 @@
 import { Grid, TextField } from '@material-ui/core';
 import { VerticalTimeline } from 'react-vertical-timeline-component';
 import styled from 'styled-components';
+import { shade } from 'polished';
 
 export const Container = styled.div`
   display: flex;
@@ -68,32 +69,6 @@ export const AvatarInput = styled.div`
     height: 60px;
     border-radius: 50%;
   }
-
-  label {
-    position: absolute;
-    width: 22px;
-    height: 22px;
-    border: none;
-    background: #f6f6f6;
-    border-radius: 50%;
-    right: 0;
-    bottom: 0;
-    cursor: pointer;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    svg {
-      width: 17px;
-      height: 17px;
-      color: #312e38;
-    }
-
-    input {
-      display: none;
-    }
-  }
 `;
 
 export const EmployerPhone = styled.div`
@@ -135,6 +110,15 @@ export const EmployerSocialMedia = styled.div`
   margin-top: auto;
   width: 100%;
   justify-content: space-between;
+
+  svg {
+    transition: color 0.2s;
+    cursor: pointer;
+
+    :hover {
+      color: #3f51b5;
+    }
+  }
 `;
 
 export const CardLocal = styled.div`
