@@ -261,7 +261,7 @@ export const SalesContainer = styled.section`
   flex-direction: column;
   min-width: 200;
   height: 320px;
-  padding: 15px 20px;
+  padding: 15px 20px 5px 20px;
   background: #fff;
   border-radius: 5px;
 
