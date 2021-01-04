@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import '../../components/TimeLine/style.css';
 
@@ -20,14 +20,11 @@ import {
   MailOutline,
   CalendarToday,
   ContactSupport,
-  CameraAlt,
 } from '@material-ui/icons';
 
 import { Link } from 'react-router-dom';
 
 import { VerticalTimelineElement } from 'react-vertical-timeline-component';
-
-import databaseMock from '../../database/databaseMock.json';
 
 import DrawerMenu from '../../components/DrawerMenu/DrawerMenu';
 
@@ -71,10 +68,10 @@ import {
 
 import LeafletMap from '../../components/LeafletMap/LeafletMap';
 import ButtonSpanStrong from '../../components/ButtonSpanStrong/ButtonSpanStrong';
-import ToolTipInfo from '../../components/ToolTipInfo/ToolTipInfo';
 import BarChart from '../../components/Charts/BarChart';
 import coinFormat from '../../utils/coinFormat';
 import api from '../../services/api';
+import ToolTipInfo from '../../components/TransitionTooltip/TransitionTooltip';
 
 interface IActivity {
   date: string;

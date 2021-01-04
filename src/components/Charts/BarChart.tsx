@@ -4,16 +4,6 @@ import { ChartComponentProps, Bar } from 'react-chartjs-2';
 import Chart from 'chart.js';
 
 interface IChart extends ChartComponentProps {
-  // data?: {
-  //   labels?: string[];
-  //   datasets?: Array<{
-  //     label?: string;
-  //     data?: number[];
-  //     backgroundColor?: string[];
-  //     borderColor?: string[];
-  //     borderWidth?: number;
-  //   }>;
-  // };
   data: Chart.ChartData;
   options: Chart.ChartOptions;
 }
