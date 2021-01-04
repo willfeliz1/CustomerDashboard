@@ -276,73 +276,105 @@ const Profile: React.FC = () => {
     [Activities],
   );
 
-  const groupSaleValues = useCallback((array: Array<number>) => {
+  const agroupValues = useCallback((array: Array<number>) => {
     const Total = array.reduce((acc, current) => acc + current, 0);
 
     return Math.floor(Total * 100) / 100;
   }, []);
 
-  const getSaleValues = useCallback(() => {
-    const sale = Number(
-      groupSaleValues(
+  const getSaleValues = useCallback(
+    (saleType: string): number => {
+      const sale = Number(
+        agroupValues(
+          sales
+            .filter((state) => state.type === 'Sale')
+            .map((saleState) => {
+              return saleState.Value * saleState.quantity;
+            }),
+        ),
+      );
+
+      const warrantySale = agroupValues(
         sales
-          .filter((state) => state.type === 'Sale')
+          .filter((state) => state.type === 'WarrantySale')
           .map((saleState) => {
             return saleState.Value * saleState.quantity;
           }),
-      ),
-    );
+      );
 
-    const warrantySale = groupSaleValues(
-      sales
-        .filter((state) => state.type === 'WarrantySale')
-        .map((saleState) => {
-          return saleState.Value * saleState.quantity;
-        }),
-    );
+      const canceledSale = agroupValues(
+        sales
+          .filter((state) => state.type === 'CanceledSale')
+          .map((saleState) => {
+            return saleState.Value * saleState.quantity;
+          }),
+      );
 
-    const canceledSale = groupSaleValues(
-      sales
-        .filter((state) => state.type === 'CanceledSale')
-        .map((saleState) => {
-          return saleState.Value * saleState.quantity;
-        }),
-    );
+      const deferredSale = agroupValues(
+        sales
+          .filter((state) => state.type === 'DeferredSale')
+          .map((saleState) => {
+            return saleState.Value * saleState.quantity;
+          }),
+      );
 
-    const deferredSale = groupSaleValues(
-      sales
-        .filter((state) => state.type === 'DeferredSale')
-        .map((saleState) => {
-          return saleState.Value * saleState.quantity;
-        }),
-    );
+      switch (saleType) {
+        case 'normal':
+          return sale;
 
-    const salesAmount = [];
+        case 'warranty':
+          return warrantySale;
 
-    salesAmount.push(sale, warrantySale, canceledSale, deferredSale);
+        case 'canceled':
+          return canceledSale;
 
-    return salesAmount;
-  }, [sales]);
+        case 'deferred':
+          return deferredSale;
+
+        default:
+          return 0;
+      }
+    },
+    [sales],
+  );
 
   const data = {
-    labels: ['normais', 'garantias', 'canceladas', 'diferidas'],
+    labels: ['Valor de vendas'],
     datasets: [
       {
-        label: 'Valor das vendas',
-        data: getSaleValues(),
-        backgroundColor: [
-          'rgba(93, 255, 72, 0.219)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 92, 86, 0.2)',
-          'rgba(245, 180, 82, 0.2)',
-        ],
-        borderColor: ['#94ff63', 'rgba(54, 162, 235, 1)', '#ff5656', '#ebb236'],
-        borderWidth: 1.5,
+        label: 'Normal',
+        data: [getSaleValues('normal')],
+        backgroundColor: ['rgba(93, 255, 72, 0.219)'],
+        borderColor: ['#94ff63'],
+        borderWidth: 1,
+      },
+      {
+        label: 'Garantia',
+        data: [getSaleValues('warranty')],
+        backgroundColor: ['rgba(54, 162, 235, 0.2)'],
+        borderColor: ['rgba(54, 162, 235, 1)'],
+        borderWidth: 1,
+      },
+      {
+        label: 'Canceladas',
+        data: [getSaleValues('canceled')],
+        backgroundColor: ['rgba(255, 92, 86, 0.2)'],
+        borderColor: ['#ff5656'],
+        borderWidth: 1,
+      },
+      {
+        label: 'Diferidas',
+        data: [getSaleValues('deferred')],
+        backgroundColor: ['rgba(245, 180, 82, 0.2)'],
+        borderColor: ['#ebb236'],
+        borderWidth: 1,
       },
     ],
   };
 
   const options = {
+    maintainAspectRatio: false,
+    responsive: true,
     scales: {
       yAxes: [
         {
@@ -353,7 +385,6 @@ const Profile: React.FC = () => {
             },
             suggestedMin: 0,
           },
-          stacked: true,
         },
       ],
     },
