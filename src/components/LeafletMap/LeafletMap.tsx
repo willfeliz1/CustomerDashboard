@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { TileLayer, Marker, Popup, Map } from 'react-leaflet';
 
-import databaseMock from '../../database/databaseMock.json';
+import api from '../../services/api';
 
 const zoom = 15;
 
@@ -12,10 +12,15 @@ interface ILocal {
 }
 
 const LeafletMap: React.FC = () => {
-  const [local, setLocal] = useState<ILocal>({ lat: 0, lng: 0 });
+  const [local, setLocal] = useState<ILocal>({
+    lat: 0,
+    lng: 0,
+  });
 
   useEffect(() => {
-    setLocal(databaseMock.User.latLngLocalJob);
+    api.get('User').then((response) => {
+      setLocal(response.data.latLngLocalJob);
+    });
   }, []);
 
   return (
