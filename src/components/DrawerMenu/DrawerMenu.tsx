@@ -147,16 +147,6 @@ const DrawerMenu: React.FC = () => {
     }
   };
 
-  const handleChangePageSelected = useCallback((index: number) => {
-    console.log(index);
-    switch (index) {
-      case 1:
-        return console.log('teste');
-      default:
-        break;
-    }
-  }, []);
-
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -219,7 +209,6 @@ const DrawerMenu: React.FC = () => {
               key={text}
               selected={selectedIndex === index}
               onClick={(e) => handleListItemClick(e, index)}
-              onChange={() => handleChangePageSelected(index)}
             >
               <ListItemIcon>{handleAddIcon(text)}</ListItemIcon>
               <ListItemText primary={text} />

@@ -7,7 +7,7 @@ interface ITitle {
   texto: string;
 }
 
-const TransitionTooltip: React.FC<ITitle> = ({ texto }: ITitle) => {
+const ToolTipInfo: React.FC<ITitle> = ({ texto }: ITitle) => {
   return (
     <div>
       <Tooltip TransitionComponent={Zoom} title={texto} placement="top" arrow>
@@ -17,4 +17,4 @@ const TransitionTooltip: React.FC<ITitle> = ({ texto }: ITitle) => {
   );
 };
 
-export default TransitionTooltip;
+export default ToolTipInfo;

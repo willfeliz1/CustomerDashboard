@@ -71,7 +71,7 @@ import {
 
 import LeafletMap from '../../components/LeafletMap/LeafletMap';
 import ButtonSpanStrong from '../../components/ButtonSpanStrong/ButtonSpanStrong';
-import TransitionTooltip from '../../components/TransitionTooltip/TransitionTooltip';
+import ToolTipInfo from '../../components/ToolTipInfo/ToolTipInfo';
 import BarChart from '../../components/Charts/BarChart';
 import coinFormat from '../../utils/coinFormat';
 import api from '../../services/api';
@@ -459,7 +459,7 @@ const Profile: React.FC = () => {
                         <h3>Oportunidades</h3>
                       </div>
 
-                      <TransitionTooltip texto={OpportunityInfo} />
+                      <ToolTipInfo texto={OpportunityInfo} />
                     </OpportunityHeader>
 
                     <ProfitLossOpportunity>
