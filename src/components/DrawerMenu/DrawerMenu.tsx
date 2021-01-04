@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import clsx from 'clsx';
 
 import {
@@ -87,9 +87,8 @@ const useStyles = makeStyles((theme: Theme) =>
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'flex-end',
-      padding: theme.spacing(0, 3),
+      padding: theme.spacing(0, 1),
       // necessary for content to be below app bar
-      ...theme.mixins.toolbar,
     },
   }),
 );
@@ -98,8 +97,8 @@ const DrawerMenu: React.FC = () => {
   const classes = useStyles();
   const theme = useTheme();
   const history = useHistory();
-  const [open, setOpen] = React.useState(false);
-  const [selectedIndex, setSelectedIndex] = React.useState(1);
+  const [open, setOpen] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(1);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -139,9 +138,9 @@ const DrawerMenu: React.FC = () => {
 
     switch (index) {
       case 1:
-        return history.push('/profile');
+        return history.push('/');
       case 2:
-        return history.push('/opportunities');
+        return history.push('/');
 
       default:
         break;
